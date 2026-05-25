@@ -30,7 +30,7 @@ export default function EcomCTA() {
               </h2>
               <p className="mt-5 max-w-xl text-white/65 md:text-lg">
                 On the call we&apos;ll screenshare your store, identify the
-                three highest-leverage CRO/AOV/checkout wins, and tell you
+                three highest-leverage CRO/AOV/checkout wins and tell you
                 honestly whether we&apos;re the right team to ship them. No
                 pitch deck.
               </p>

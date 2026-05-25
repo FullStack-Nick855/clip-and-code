@@ -15,19 +15,19 @@ const APP_FEATURES = [
     icon: AppWindow,
     title: "Polaris + App Bridge native UI",
     blurb:
-      "Merchant-facing UIs built with Shopify's design system so your app feels native, fast, and trusted.",
+      "Merchant-facing UIs built with Shopify's design system so your app feels native, fast and trusted.",
   },
   {
     icon: Boxes,
     title: "Theme App Extensions & blocks",
     blurb:
-      "Drop-in storefront blocks merchants can install, configure, and remove without touching code.",
+      "Drop-in storefront blocks merchants can install, configure and remove without touching code.",
   },
   {
     icon: Wand2,
     title: "GraphQL Admin + Webhooks",
     blurb:
-      "Bulk operations, webhook-driven sync, and resilient retry logic that survives Shopify's rate limits.",
+      "Bulk operations, webhook-driven sync and resilient retry logic that survives Shopify's rate limits.",
   },
   {
     icon: GitBranch,

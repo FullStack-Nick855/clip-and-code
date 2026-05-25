@@ -1,6 +1,6 @@
 # Clip & Code — Website
 
-A premium consulting agency website for **Clip & Code** — a senior software consultancy specializing in enterprise applications, AI systems, data engineering, and modern product experiences.
+A premium consulting agency website for **Clip & Code** — a senior software consultancy specializing in enterprise applications, AI systems, data engineering and modern product experiences.
 
 This repository contains the **Next.js 14 + Tailwind + Framer Motion** scaffold with a world-class homepage built out end-to-end. Other routes (Services, Case Studies, About, Contact, Insights, AI & Automation, Enterprise Data Solutions, UI/UX & Product Engineering) are linked via anchors on the homepage today, ready to be promoted into full pages.
 
@@ -8,9 +8,9 @@ This repository contains the **Next.js 14 + Tailwind + Framer Motion** scaffold 
 
 - **Next.js 14** (App Router) + **TypeScript**
 - **Tailwind CSS** with a custom dark design system (ink/accent palette, gradients, glassmorphism, motion utilities)
-- **Framer Motion** for scroll-triggered reveals, counters, and floating UI
+- **Framer Motion** for scroll-triggered reveals, counters and floating UI
 - **lucide-react** for the icon system
-- Optimized for SEO, accessibility (skip-link, reduced-motion), and Core Web Vitals
+- Optimized for SEO, accessibility (skip-link, reduced-motion) and Core Web Vitals
 
 ## Run locally
 

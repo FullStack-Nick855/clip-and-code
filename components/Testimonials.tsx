@@ -14,14 +14,14 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "We had a year of scaling pain in front of us. Nick's team triaged the system, rebuilt the hot paths, and gave us a roadmap we could actually execute against. Latency dropped overnight.",
+      "We had a year of scaling pain in front of us. Nick's team triaged the system, rebuilt the hot paths and gave us a roadmap we could actually execute against. Latency dropped overnight.",
     name: "CTO",
     company: "FinTech · Growth-stage",
     accent: "from-accent-cyan to-accent-teal",
   },
   {
     quote:
-      "The rare consultancy that gets both the AI workflow and the production constraints right. They wired in guardrails, observability, and human review without slowing the team down.",
+      "The rare consultancy that gets both the AI workflow and the production constraints right. They wired in guardrails, observability and human review without slowing the team down.",
     name: "VP Engineering",
     company: "EdTech Platform",
     accent: "from-accent-violet to-accent-cyan",

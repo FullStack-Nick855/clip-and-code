@@ -18,9 +18,9 @@ const CAPS = [
     icon: Target,
     title: "Conversion Rate Optimization (CRO)",
     blurb:
-      "Heatmaps, session replay, and analytics audits feed a continuous A/B testing roadmap. Every change is shipped with a hypothesis, a sample-size plan, and a revenue-impact projection.",
+      "Heatmaps, session replay and analytics audits feed a continuous A/B testing roadmap. Every change is shipped with a hypothesis, a sample-size plan and a revenue-impact projection.",
     points: [
-      "PDP, collection, and homepage testing",
+      "PDP, collection and homepage testing",
       "Quantitative + qualitative research",
       "Mobile-first variant design",
       "Statistical rigor (no vanity wins)",
@@ -31,7 +31,7 @@ const CAPS = [
     icon: TrendingUp,
     title: "Average Order Value (AOV) growth",
     blurb:
-      "Bundles, tiered discounts, free-ship thresholds, post-purchase offers, and quantity breaks engineered into the storefront — not bolted on top.",
+      "Bundles, tiered discounts, free-ship thresholds, post-purchase offers and quantity breaks engineered into the storefront — not bolted on top.",
     points: [
       "Frequently bought together engines",
       "Dynamic free-ship progress bars",
@@ -44,7 +44,7 @@ const CAPS = [
     icon: Repeat,
     title: "Cross-sell & upsell systems",
     blurb:
-      "Personalized recommendations on PDP, cart, and post-purchase pages — wired to your real catalog logic, margins, and inventory state.",
+      "Personalized recommendations on PDP, cart and post-purchase pages — wired to your real catalog logic, margins and inventory state.",
     points: [
       "Cart-drawer cross-sell modules",
       "PDP “complete the look” slots",
@@ -57,7 +57,7 @@ const CAPS = [
     icon: ShoppingCart,
     title: "Abandoned cart recovery",
     blurb:
-      "Multi-channel win-back flows across email, SMS, and on-site triggers — segmented by intent, AOV tier, and product category for double-digit recovery rates.",
+      "Multi-channel win-back flows across email, SMS and on-site triggers — segmented by intent, AOV tier and product category for double-digit recovery rates.",
     points: [
       "Klaviyo / Postscript / Attentive flows",
       "Browse + cart + checkout abandonment",
@@ -70,7 +70,7 @@ const CAPS = [
     icon: CreditCard,
     title: "Checkout optimization",
     blurb:
-      "Shopify Checkout Extensions, dynamic shipping logic, express-pay placement, and friction audits that recover the buyers other agencies write off.",
+      "Shopify Checkout Extensions, dynamic shipping logic, express-pay placement and friction audits that recover the buyers other agencies write off.",
     points: [
       "Checkout Extensibility (Shopify Plus)",
       "Express pay (Shop Pay, Apple, Google)",
@@ -83,7 +83,7 @@ const CAPS = [
     icon: Layers,
     title: "Custom Shopify apps",
     blurb:
-      "We design, build, and ship Shopify apps — public or private — using the latest Polaris, App Bridge, GraphQL Admin, and Theme App Extensions.",
+      "We design, build and ship Shopify apps — public or private — using the latest Polaris, App Bridge, GraphQL Admin and Theme App Extensions.",
     points: [
       "Public + private apps",
       "Theme App Extensions & blocks",
@@ -106,7 +106,7 @@ export default function EcomCapabilities() {
               <span className="text-accent-gradient">inside your store.</span>
             </>
           }
-          description="We don't run growth as a side service. CRO, AOV, recovery, checkout, and custom Shopify apps are one practice — handled by the same senior team."
+          description="We don't run growth as a side service. CRO, AOV, recovery, checkout and custom Shopify apps are one practice — handled by the same senior team."
         />
 
         <div className="mt-14 grid gap-4 md:grid-cols-2">
@@ -168,7 +168,7 @@ export default function EcomCapabilities() {
               <p className="text-balance text-white/75 md:text-lg">
                 Across recent Shopify engagements, our partners typically see
                 <span className="text-white font-semibold"> +18% revenue per visitor</span>,
-                <span className="text-white font-semibold"> +22% AOV</span>, and
+                <span className="text-white font-semibold"> +22% AOV</span> and
                 <span className="text-white font-semibold"> 14–29% abandoned-cart recovery</span>
                 {" "}within the first 90 days. No magic — just discipline.
               </p>

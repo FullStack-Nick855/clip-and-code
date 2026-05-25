@@ -49,7 +49,7 @@ export default function EcomHero() {
               className="mt-6 max-w-xl text-balance text-base leading-relaxed text-white/65 md:text-lg"
             >
               We work with Shopify and Shopify Plus brands to lift conversion
-              rate, raise average order value, recover abandoned carts, and
+              rate, raise average order value, recover abandoned carts and
               ship custom Shopify apps that compound revenue every month —
               without burning your CAC.
             </motion.p>

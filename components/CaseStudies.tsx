@@ -37,7 +37,7 @@ const CASES: CaseStudy[] = [
     industry: "Healthcare · Workflow",
     title: "AI triage that routes 38% of intake without a human",
     blurb:
-      "Designed a HIPAA-compliant LLM workflow with guardrails, audit trails, and clinician review — embedded in the existing EHR.",
+      "Designed a HIPAA-compliant LLM workflow with guardrails, audit trails and clinician review — embedded in the existing EHR.",
     metrics: [
       { label: "Auto-routed", value: "38%" },
       { label: "Time to triage", value: "−54%" },

@@ -35,7 +35,7 @@ export default function Footer() {
             <Logo size="lg" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
               Clip &amp; Code is a senior software consultancy building
-              enterprise applications, AI systems, Shopify growth engines, and
+              enterprise applications, AI systems, Shopify growth engines and
               modern product experiences.
             </p>
             <div className="mt-6 space-y-1.5 text-sm">

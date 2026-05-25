@@ -28,7 +28,7 @@ const SERVICES: Service[] = [
     icon: ShoppingBag,
     title: "E-commerce & Shopify Growth",
     blurb:
-      "Revenue engineering for Shopify and Shopify Plus brands — CRO, AOV, recovery, and custom apps.",
+      "Revenue engineering for Shopify and Shopify Plus brands — CRO, AOV, recovery and custom apps.",
     bullets: [
       "Conversion Rate Optimization",
       "AOV · Cross-sell · Upsell",
@@ -42,7 +42,7 @@ const SERVICES: Service[] = [
     icon: Cpu,
     title: "AI Automation & Workflows",
     blurb:
-      "LLM workflows, retrieval systems, agent orchestration, CRM automation, and intelligent ops tooling.",
+      "LLM workflows, retrieval systems, agent orchestration, CRM automation and intelligent ops tooling.",
     bullets: [
       "LLM + RAG pipelines",
       "Agent orchestration",
@@ -55,7 +55,7 @@ const SERVICES: Service[] = [
     icon: Building2,
     title: "Enterprise & SaaS Development",
     blurb:
-      "Multi-tenant SaaS, ASP.NET / .NET Core, modern stacks, and enterprise platforms built for scale.",
+      "Multi-tenant SaaS, ASP.NET / .NET Core, modern stacks and enterprise platforms built for scale.",
     bullets: [
       "ASP.NET / .NET Core",
       "Next.js + TypeScript",
@@ -81,7 +81,7 @@ const SERVICES: Service[] = [
     icon: Database,
     title: "Data Engineering & Analytics",
     blurb:
-      "Pipelines, warehouses, lakehouses, executive dashboards, and product analytics that operators trust.",
+      "Pipelines, warehouses, lakehouses, executive dashboards and product analytics that operators trust.",
     bullets: [
       "ETL / ELT pipelines",
       "Warehouse + lakehouse",
@@ -94,7 +94,7 @@ const SERVICES: Service[] = [
     icon: CloudCog,
     title: "Cloud, DevOps & Performance",
     blurb:
-      "Pragmatic cloud architecture on AWS, Azure, GCP — IaC, CI/CD, observability, and hot-path tuning.",
+      "Pragmatic cloud architecture on AWS, Azure, GCP — IaC, CI/CD, observability and hot-path tuning.",
     bullets: [
       "AWS · Azure · GCP",
       "Infrastructure as Code",
@@ -117,7 +117,7 @@ export default function Services() {
               <span className="text-accent-gradient">end&#8209;to&#8209;end.</span>
             </>
           }
-          description="Six tightly-defined practices, one senior team. We can own design, architecture, and delivery — or plug into yours."
+          description="Six tightly-defined practices, one senior team. We can own design, architecture and delivery — or plug into yours."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
