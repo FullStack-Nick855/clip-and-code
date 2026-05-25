@@ -47,7 +47,7 @@ export default function TrustedExperience() {
             <p className="mt-4 max-w-md text-white/60">
               From regulated healthcare platforms to global FinTech rollouts,
               we&apos;ve been the technical partner trusted to make it work — at
-              scale, on time, and on spec.
+              scale, on time and on spec.
             </p>
           </div>
 

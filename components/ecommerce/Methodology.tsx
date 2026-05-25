@@ -17,14 +17,14 @@ const STEPS = [
     label: "02 · Hypothesize",
     title: "Prioritize tests",
     blurb:
-      "Every idea is scored by impact, confidence, and ease. We work the highest-leverage tests first.",
+      "Every idea is scored by impact, confidence and ease. We work the highest-leverage tests first.",
   },
   {
     icon: Hammer,
     label: "03 · Build & ship",
     title: "Design + dev in one team",
     blurb:
-      "Variant design, Liquid/Shopify development, and QA — handled by the same senior team that audited the funnel.",
+      "Variant design, Liquid/Shopify development and QA — handled by the same senior team that audited the funnel.",
   },
   {
     icon: BarChart3,
@@ -47,7 +47,7 @@ export default function Methodology() {
               <span className="text-accent-gradient">not a one-off audit.</span>
             </>
           }
-          description="Growth is a process. We run it as one: weekly stand-ups, biweekly experiment reviews, a shared dashboard, and a roadmap you actually believe in."
+          description="Growth is a process. We run it as one: weekly stand-ups, biweekly experiment reviews, a shared dashboard and a roadmap you actually believe in."
         />
 
         <div className="relative mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">

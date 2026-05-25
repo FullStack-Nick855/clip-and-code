@@ -16,19 +16,19 @@ const FAQ = [
   },
   {
     q: "Do you build apps for the public Shopify App Store?",
-    a: "Yes — both private apps (built for your store only) and public apps (listed on the App Store). We handle Polaris UI, App Bridge embedding, GraphQL Admin integrations, webhook reliability, and Shopify's listing/review process.",
+    a: "Yes — both private apps (built for your store only) and public apps (listed on the App Store). We handle Polaris UI, App Bridge embedding, GraphQL Admin integrations, webhook reliability and Shopify's listing/review process.",
   },
   {
     q: "How do you measure CRO wins so they're not vanity?",
-    a: "Every test ships with a pre-registered hypothesis, sample-size plan, primary metric, and guardrail metrics. We use Bayesian methods or frequentist gates (your call) and read on revenue per visitor, not raw CVR.",
+    a: "Every test ships with a pre-registered hypothesis, sample-size plan, primary metric and guardrail metrics. We use Bayesian methods or frequentist gates (your call) and read on revenue per visitor, not raw CVR.",
   },
   {
     q: "Will this break my theme or slow my site down?",
-    a: "No. Everything is built theme-safe, code-reviewed, and performance-budgeted. We measure Core Web Vitals before and after, and we won't ship anything that regresses LCP, CLS, or INP without explicit sign-off.",
+    a: "No. Everything is built theme-safe, code-reviewed and performance-budgeted. We measure Core Web Vitals before and after and we won't ship anything that regresses LCP, CLS, or INP without explicit sign-off.",
   },
   {
     q: "How do engagements work — retainer or project?",
-    a: "Most stores work with us on a monthly retainer covering audit, experimentation, development, and app work. Smaller stores can engage on focused projects (e.g., a checkout audit, an upsell module, a custom app build).",
+    a: "Most stores work with us on a monthly retainer covering audit, experimentation, development and app work. Smaller stores can engage on focused projects (e.g., a checkout audit, an upsell module, a custom app build).",
   },
 ];
 

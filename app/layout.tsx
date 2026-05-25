@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s · Clip & Code",
   },
   description:
-    "Clip & Code is a senior software consultancy building enterprise applications, AI automation, SaaS platforms, Shopify growth engines, and modern product experiences for startups and global teams.",
+    "Clip & Code is a senior software consultancy building enterprise applications, AI automation, SaaS platforms, Shopify growth engines and modern product experiences for startups and global teams.",
   keywords: [
     "software consultancy",
     "enterprise development",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title:
       "Clip & Code — Enterprise Software, AI Systems & Shopify Growth",
     description:
-      "We help startups, enterprises, and Shopify brands build scalable products, automate operations, and accelerate growth through engineering, design, AI, and CRO.",
+      "We help startups, enterprises and Shopify brands build scalable products, automate operations and accelerate growth through engineering, design, AI and CRO.",
     siteName: "Clip & Code",
     locale: "en_US",
   },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title:
       "Clip & Code — Enterprise Software, AI Systems & Shopify Growth",
     description:
-      "Senior consulting partner for enterprise software, AI systems, Shopify growth, and modern product experiences.",
+      "Senior consulting partner for enterprise software, AI systems, Shopify growth and modern product experiences.",
   },
   robots: {
     index: true,
@@ -83,14 +83,14 @@ const organizationLdJson = {
   url: "https://clipandcode.com",
   email: "hello@clipandcode.com",
   description:
-    "Senior software consultancy specializing in enterprise applications, AI automation, SaaS platforms, Shopify growth, and modern product experiences.",
+    "Senior software consultancy specializing in enterprise applications, AI automation, SaaS platforms, Shopify growth and modern product experiences.",
   founder: {
     "@type": "Person",
     name: "Gourav",
     alternateName: "Nick",
     jobTitle: "Senior Software Consultant",
     description:
-      "Senior software consultant with 15+ years building enterprise software, AI systems, and modern product experiences. Known professionally as Nick by long-standing clients.",
+      "Senior software consultant with 15+ years building enterprise software, AI systems and modern product experiences. Known professionally as Nick by long-standing clients.",
   },
   areaServed: "Worldwide",
   knowsAbout: [

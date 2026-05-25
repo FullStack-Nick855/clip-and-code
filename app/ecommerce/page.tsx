@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title:
     "Shopify CRO, AOV & Custom App Development — Clip & Code E-commerce Practice",
   description:
-    "We help Shopify and Shopify Plus brands grow revenue per visitor through CRO, AOV optimization, cross-sell, upsell, abandoned cart recovery, checkout optimization, and custom Shopify app development.",
+    "We help Shopify and Shopify Plus brands grow revenue per visitor through CRO, AOV optimization, cross-sell, upsell, abandoned cart recovery, checkout optimization and custom Shopify app development.",
   keywords: [
     "Shopify CRO",
     "Shopify AOV optimization",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title:
       "Shopify CRO, AOV & Custom App Development — Clip & Code",
     description:
-      "Senior consulting partner for Shopify brands. CRO, AOV, abandoned-cart recovery, checkout optimization, and custom Shopify apps.",
+      "Senior consulting partner for Shopify brands. CRO, AOV, abandoned-cart recovery, checkout optimization and custom Shopify apps.",
   },
   twitter: {
     card: "summary_large_image",
@@ -53,19 +53,19 @@ const FAQ_LD = [
   },
   {
     q: "Do you build apps for the public Shopify App Store?",
-    a: "Yes — both private apps (built for your store only) and public apps (listed on the App Store). We handle Polaris UI, App Bridge embedding, GraphQL Admin integrations, webhook reliability, and Shopify's listing/review process.",
+    a: "Yes — both private apps (built for your store only) and public apps (listed on the App Store). We handle Polaris UI, App Bridge embedding, GraphQL Admin integrations, webhook reliability and Shopify's listing/review process.",
   },
   {
     q: "How do you measure CRO wins so they're not vanity?",
-    a: "Every test ships with a pre-registered hypothesis, sample-size plan, primary metric, and guardrail metrics. We use Bayesian methods or frequentist gates and read on revenue per visitor, not raw CVR.",
+    a: "Every test ships with a pre-registered hypothesis, sample-size plan, primary metric and guardrail metrics. We use Bayesian methods or frequentist gates and read on revenue per visitor, not raw CVR.",
   },
   {
     q: "Will this break my theme or slow my site down?",
-    a: "No. Everything is built theme-safe, code-reviewed, and performance-budgeted. We measure Core Web Vitals before and after and won't ship anything that regresses LCP, CLS, or INP without explicit sign-off.",
+    a: "No. Everything is built theme-safe, code-reviewed and performance-budgeted. We measure Core Web Vitals before and after and won't ship anything that regresses LCP, CLS, or INP without explicit sign-off.",
   },
   {
     q: "How do engagements work — retainer or project?",
-    a: "Most stores work with us on a monthly retainer covering audit, experimentation, development, and app work. Smaller stores can engage on focused projects (e.g., a checkout audit, an upsell module, a custom app build).",
+    a: "Most stores work with us on a monthly retainer covering audit, experimentation, development and app work. Smaller stores can engage on focused projects (e.g., a checkout audit, an upsell module, a custom app build).",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function EcommercePage() {
     },
     areaServed: "Worldwide",
     description:
-      "Conversion Rate Optimization (CRO), Average Order Value (AOV) growth, cross-sell and upsell systems, abandoned cart recovery, checkout optimization, and custom Shopify app development for Shopify and Shopify Plus merchants.",
+      "Conversion Rate Optimization (CRO), Average Order Value (AOV) growth, cross-sell and upsell systems, abandoned cart recovery, checkout optimization and custom Shopify app development for Shopify and Shopify Plus merchants.",
     offers: {
       "@type": "OfferCatalog",
       name: "E-commerce Growth Services",

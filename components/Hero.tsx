@@ -98,7 +98,7 @@ export default function Hero() {
             >
               Clip &amp; Code is a senior consulting partner for ambitious teams.
               We architect scalable products, automate operations, modernize
-              legacy systems, and ship AI&#8209;native experiences your users
+              legacy systems and ship AI&#8209;native experiences your users
               actually trust.
             </motion.p>
 

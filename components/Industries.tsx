@@ -27,7 +27,7 @@ const INDUSTRIES: Industry[] = [
     icon: ShoppingBag,
     title: "E-commerce & Shopify",
     blurb:
-      "CRO, AOV growth, abandoned-cart recovery, checkout optimization, and custom Shopify apps.",
+      "CRO, AOV growth, abandoned-cart recovery, checkout optimization and custom Shopify apps.",
     tag: "Shopify · CRO · AOV",
     href: "/ecommerce",
     featured: true,
@@ -36,35 +36,35 @@ const INDUSTRIES: Industry[] = [
     icon: HeartPulse,
     title: "Healthcare",
     blurb:
-      "HIPAA-aware platforms, clinical workflows, and patient-facing experiences.",
+      "HIPAA-aware platforms, clinical workflows and patient-facing experiences.",
     tag: "HIPAA · HL7 / FHIR",
   },
   {
     icon: GraduationCap,
     title: "Education",
     blurb:
-      "LMS, assessment, and student data platforms that scale through enrollment surges.",
+      "LMS, assessment and student data platforms that scale through enrollment surges.",
     tag: "LMS · LTI · K12 / Higher Ed",
   },
   {
     icon: Landmark,
     title: "FinTech",
     blurb:
-      "Ledger systems, KYC, payments, and risk dashboards built for regulator scrutiny.",
+      "Ledger systems, KYC, payments and risk dashboards built for regulator scrutiny.",
     tag: "PCI · SOC 2 · KYC",
   },
   {
     icon: LineChart,
     title: "SaaS & MarTech",
     blurb:
-      "Multi-tenant platforms, billing, identity, observability, lead enrichment, attribution, and AI workflows for revenue teams.",
+      "Multi-tenant platforms, billing, identity, observability and AI revenue workflows.",
     tag: "Multi-tenant · MarTech · B2B",
   },
   {
     icon: Factory,
     title: "Enterprise Operations",
     blurb:
-      "Internal tooling, automation, and reporting layers that compound across the org.",
+      "Internal tooling, automation and reporting layers that compound across the org.",
     tag: "ERP · BPM · BI",
   },
 ];
@@ -81,7 +81,7 @@ export default function Industries() {
               <span className="text-accent-gradient">regulated, complex industries.</span>
             </>
           }
-          description="We don't just write code in your domain — we learn it. Compliance constraints, integration partners, and how operators actually use the system."
+          description="We don't just write code in your domain — we learn it. Compliance constraints, integration partners and how operators actually use the system."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

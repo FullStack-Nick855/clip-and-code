@@ -34,7 +34,7 @@ export default function CTABanner() {
               <p className="mt-5 max-w-xl text-white/65 md:text-lg">
                 Tell us about the system, the constraint, the deadline.
                 We&apos;ll come back with a clear point of view, an honest
-                assessment, and the next concrete step — within two business
+                assessment and the next concrete step — within two business
                 days.
               </p>
               <ul className="mt-6 space-y-2.5 text-sm text-white/75">

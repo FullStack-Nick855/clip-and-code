@@ -10,7 +10,7 @@ const RESULTS = [
     metric: "+24%",
     label: "AOV",
     blurb:
-      "Rebuilt PDP bundles, added a dynamic free-ship progress bar, and shipped a one-click post-purchase upsell. Margin-aware logic kept gift-set offers off promo SKUs.",
+      "Rebuilt PDP bundles, added a dynamic free-ship progress bar and shipped a one-click post-purchase upsell. Margin-aware logic kept gift-set offers off promo SKUs.",
     tags: ["Shopify Plus", "Liquid", "Checkout Ext.", "Klaviyo"],
   },
   {
@@ -19,7 +19,7 @@ const RESULTS = [
     metric: "29%",
     label: "Cart recovery",
     blurb:
-      "Behavioral segmentation across browse, cart, and checkout. Email + SMS with intent-aware discount tiers replaced a generic 10% blast.",
+      "Behavioral segmentation across browse, cart and checkout. Email + SMS with intent-aware discount tiers replaced a generic 10% blast.",
     tags: ["Klaviyo", "Postscript", "Segment"],
   },
   {
@@ -28,7 +28,7 @@ const RESULTS = [
     metric: "+37%",
     label: "Customer LTV",
     blurb:
-      "Built a private Shopify app on top of Recharge with intelligent reactivation, skip-prediction, and a merchant dashboard their CX team actually uses.",
+      "Built a private Shopify app on top of Recharge with intelligent reactivation, skip-prediction and a merchant dashboard their CX team actually uses.",
     tags: ["Custom App", "Recharge", "Polaris", "App Bridge"],
   },
 ];

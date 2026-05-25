@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { motion } from "framer-motion";
 import {
@@ -16,7 +17,7 @@ const PILLARS = [
     icon: Hammer,
     title: "Engineering-first, not slide-first",
     blurb:
-      "We write the code, run it in production, and stand behind the system long after the kickoff deck is closed.",
+      "We write the code, run it in production and stand behind the system long after the kickoff deck is closed.",
   },
   {
     icon: Compass,
@@ -46,7 +47,7 @@ const PILLARS = [
     icon: Scaling,
     title: "Built to scale from day one",
     blurb:
-      "Capacity, data growth, and team scale are first-class design constraints — not regrets we revisit in year two.",
+      "Capacity, data growth and team scale are first-class design constraints — not regrets we revisit in year two.",
   },
 ];
 
@@ -63,7 +64,7 @@ export default function WhyUs() {
               first time.
             </>
           }
-          description="Founded by Gourav (Nick) — 15+ years building enterprise software, leading product engineering teams, and shipping under real regulatory and scale pressure."
+          description="Founded by Gourav (Nick) — 15+ years building enterprise software, leading product engineering teams and shipping under real regulatory and scale pressure."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -123,10 +124,10 @@ export default function WhyUs() {
               <p className="mt-4 max-w-2xl text-white/65">
                 <strong className="text-white">Clip &amp; Code</strong> is a
                 senior consultancy focused on enterprise software, AI systems,
-                e&#8209;commerce growth, and modern product engineering. 15+
-                years across healthcare, FinTech, EdTech, SaaS, and Shopify —
+                e&#8209;commerce growth and modern product engineering. 15+
+                years across healthcare, FinTech, EdTech, SaaS and Shopify —
                 combining deep full-stack expertise with a serious eye for
-                product, conversion, and interface.
+                product, conversion and interface.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {[
@@ -154,25 +155,13 @@ function FounderAvatar() {
   return (
     <div className="relative mx-auto h-32 w-32 md:h-40 md:w-40">
       <div className="absolute inset-0 rounded-full bg-accent-gradient opacity-30 blur-2xl" />
-      <div className="relative flex h-full w-full items-center justify-center rounded-full border border-white/15 bg-gradient-to-br from-ink-700 to-ink-900 shadow-glow-md">
-        <svg
-          viewBox="0 0 64 64"
-          className="h-20 w-20 md:h-24 md:w-24 text-white/85"
-          aria-hidden
-        >
-          <defs>
-            <linearGradient id="avatarG" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#60A5FA" />
-              <stop offset="100%" stopColor="#A78BFA" />
-            </linearGradient>
-          </defs>
-          <circle cx="32" cy="22" r="11" fill="url(#avatarG)" opacity="0.85" />
-          <path
-            d="M10 56 C10 42, 22 36, 32 36 C42 36, 54 42, 54 56 Z"
-            fill="url(#avatarG)"
-            opacity="0.85"
-          />
-        </svg>
+      <div className="relative flex h-full w-full overflow-hidden rounded-full border border-white/15 bg-gradient-to-br from-ink-700 to-ink-900 shadow-glow-md">
+        <Image
+          src="/founder.png"
+          alt="Founder"
+          fill
+          className="object-cover"
+        />
       </div>
     </div>
   );
