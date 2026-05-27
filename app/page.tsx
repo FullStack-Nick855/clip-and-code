@@ -18,8 +18,8 @@ export default function HomePage() {
       <Industries />
       <CaseStudies />
       <WhyUs />
-      <Testimonials />
       <CTABanner />
+      <Testimonials />
     </>
   );
 }
