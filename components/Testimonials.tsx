@@ -37,7 +37,7 @@ export default function Testimonials() {
           title={
             <>
               Real Success.{" "}
-              <span className="text-accent-gradient">Real Success.</span>{" "}
+              <span className="text-accent-gradient">Real Results.</span>{" "}
             </>
           }
         />
