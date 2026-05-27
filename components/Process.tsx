@@ -75,14 +75,14 @@ export default function Process() {
           className="space-y-12"
         >
           {/* Heading */}
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
-              Our Process
-            </h2>
-            <p className="text-base text-white/60 font-light max-w-2xl mx-auto">
-              A proven methodology crafted for powerful results. Structured workflows that keep innovation moving.
-            </p>
-          </div>
+            <div className="text-left space-y-4">
+                <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
+                    Our Process
+                </h2>
+                <p className="text-base text-white/60 font-light max-w-2xl">
+                    A proven methodology crafted for powerful results. Structured workflows that keep innovation moving.
+                </p>
+            </div>
 
           {/* Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
