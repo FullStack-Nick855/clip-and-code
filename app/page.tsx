@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Process from "@/components/Process";
 import TrustedExperience from "@/components/TrustedExperience";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       {/* <Hero /> */}
+      <Process />
       <TrustedExperience />
       <Services />
       <Industries />

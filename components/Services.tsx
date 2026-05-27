@@ -113,11 +113,11 @@ export default function Services() {
           eyebrow="What we do"
           title={
             <>
-              Engineering capability,{" "}
-              <span className="text-accent-gradient">end&#8209;to&#8209;end.</span>
+              Our Industry,{" "}
+              <span className="text-accent-gradient"> Expertise.&#8209;</span>
             </>
           }
-          description="Six tightly-defined practices, one senior team. We can own design, architecture and delivery — or plug into yours."
+          description="Experience that understands your market. We can own design, architecture and delivery or plug into yours."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
