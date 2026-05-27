@@ -148,7 +148,7 @@ export default function Hero() {
         </div>
 
         {/* Logo strip with marquee */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -178,7 +178,7 @@ export default function Hero() {
               </span>
             ))}
           />
-        </motion.div>
+        </motion.div> */}
 
         {/* Scroll cue */}
         <motion.div

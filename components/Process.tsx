@@ -80,7 +80,7 @@ export default function Process() {
               Our Process
             </h2>
             <p className="text-base text-white/60 font-light max-w-2xl mx-auto">
-              A proven methodology that delivers exceptional results
+              A proven methodology crafted for powerful results. Structured workflows that keep innovation moving.
             </p>
           </div>
 
