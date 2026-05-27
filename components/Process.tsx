@@ -76,7 +76,15 @@ export default function Process() {
         >
           {/* Heading */}
             <div className="text-left space-y-4">
-                <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
+                <h2
+                    className="text-white"
+                    style={{
+                    fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                    lineHeight: "1.1",
+                    letterSpacing: "-0.03em",
+                    fontWeight: 600,
+                    }}
+                >
                     Our Process
                 </h2>
                 <p className="text-base text-white/60 font-light max-w-2xl">
