@@ -10,7 +10,7 @@ import CTABanner from "@/components/CTABanner";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <TrustedExperience />
       <Services />
       <Industries />
