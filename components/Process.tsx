@@ -87,7 +87,13 @@ export default function Process() {
                 >
                     Our Process
                 </h2>
-                <p className="text-base text-white/60 font-light max-w-2xl">
+                <p
+                    className="text-white/60 font-light max-w-2xl"
+                    style={{
+                    fontSize: "1.125rem",
+                    lineHeight: "1.75rem",
+                    }}
+                >
                     A proven methodology crafted for powerful results. Structured workflows that keep innovation moving.
                 </p>
             </div>
