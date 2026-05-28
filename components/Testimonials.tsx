@@ -36,9 +36,8 @@ export default function Testimonials() {
           eyebrow="What partners say"
           title={
             <>
-              Trusted by{" "}
-              <span className="text-accent-gradient">operators and founders</span>{" "}
-              under real pressure.
+              Real Success.{" "}
+              <span className="text-accent-gradient">Real Results.</span>{" "}
             </>
           }
         />
