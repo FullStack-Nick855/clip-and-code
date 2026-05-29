@@ -205,20 +205,16 @@ export default function CaseStudiesPortifolio() {
       <div className="max-w-7xl mx-auto px-6 space-y-10 relative z-10">
         {/* Header */}
         <div className="space-y-3">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em]">
-            Case Studies
-          </p>
           <SectionHeader
-                    eyebrow="Where we work"
-                    title={
-                      <>
-                        Websites That{" "}
-                        <span className="text-accent-gradient">Actually Work.</span>
-                      </>
-                    }
-                    description="Beautiful design is nothing without results. Here&apos;s what
-                    we&apos;ve delivered for real clients."
-            />
+            eyebrow="Case Studies"
+            title={
+              <>
+                Websites That{" "}
+                <span className="text-accent-gradient">Actually Work.</span>
+              </>
+            }
+            description="Beautiful design is nothing without results. Here&apos;s what we&apos;ve delivered for real clients."
+          />
           
         </div>
 
