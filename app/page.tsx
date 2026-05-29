@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import CaseStudiesPortifolio from "@/components/CaseStudiesPortifolio";
 import Process from "@/components/Process";
 import TrustedExperience from "@/components/TrustedExperience";
 import Services from "@/components/Services";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <CaseStudiesPortifolio />
       <Process />
       <TrustedExperience />
       <Services />
