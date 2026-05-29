@@ -41,6 +41,7 @@ export type CaseStudy = {
   dataProof: DataProof[];
   testimonial?: Testimonial;
 };
+import SectionHeader from "./SectionHeader";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -207,14 +208,18 @@ export default function CaseStudiesPortifolio() {
           <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em]">
             Case Studies
           </p>
-          <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
-            Websites That{" "}
-            <span className="font-extralight text-white/70">Actually Work</span>
-          </h2>
-          <p className="text-white/50 max-w-lg font-light leading-relaxed">
-            Beautiful design is nothing without results. Here&apos;s what
-            we&apos;ve delivered for real clients.
-          </p>
+          <SectionHeader
+                    eyebrow="Where we work"
+                    title={
+                      <>
+                        Websites That{" "}
+                        <span className="text-accent-gradient">Actually Work.</span>
+                      </>
+                    }
+                    description="Beautiful design is nothing without results. Here&apos;s what
+                    we&apos;ve delivered for real clients."
+            />
+          
         </div>
 
         {/* Grid */}
