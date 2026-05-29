@@ -18,7 +18,7 @@ export default function HomePage() {
       <Services />
       <Industries />
       <CaseStudiesPortifolio />
-      <CaseStudies />
+      {/* <CaseStudies /> */}
       <WhyUs />
       <CTABanner />
       <Testimonials />
