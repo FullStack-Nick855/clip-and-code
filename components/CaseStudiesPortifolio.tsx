@@ -201,7 +201,7 @@ export default function CaseStudiesPortifolio() {
   const [active, setActive] = useState<CaseStudy | null>(null);
 
   return (
-    <section className="py-32 relative">
+    <section id="case-studies" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-6 space-y-10 relative z-10">
         {/* Header */}
         <div className="space-y-3">
