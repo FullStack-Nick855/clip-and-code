@@ -46,153 +46,163 @@ import SectionHeader from "./SectionHeader";
 const caseStudies: CaseStudy[] = [
   {
     image:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/0bd2783d0_Screenshot2026-05-10at002644.png",
-    alt: "Remy + Roo",
+      "/mylas-moss1.png",
+    alt: "mylas moss1",
     category: "E-commerce",
-    subcategory: "Pet Accessories",
-    title: "We Increased Their CVR by 80% and Doubled Their Revenue",
+    subcategory: "Health & Wellness Brand",
+    title: "Turning Brand Love Into Revenue Through Strategic Shopify CRO",
     stats: [
       { value: "+108%", label: "Total Sales Growth" },
       { value: "+80%", label: "Conversion Rate Lift" },
       { value: "1.1% to 1.98%", label: "CVR Improvement" },
     ],
-    client: "Remy + Roo",
+    client: "Growth Needle",
     platform: "Shopify",
     modalImage:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/36ce1d3f2_Screenshot2026-05-10at002825.png",
-    visitUrl: "https://remyandroo.com",
+      "/mylas-moss2.png",
+    visitUrl: "https://www.mylasmoss.com/",
     introduction:
-      "Remy + Roo is a premium dog accessories brand selling beautifully designed bandanas and everyday essentials for dogs. They had a loyal customer base and genuine brand love - but their website wasn't converting. Despite solid traffic from ads and organic, revenue wasn't matching the opportunity.",
+      "Mylas Moss now has a website experience that finally matches the quality of its products and brand identity — resulting in stronger conversions, higher customer confidence, and scalable growth.",
     metrics: [
       { value: "+108%", label: "Total Sales Growth" },
       { value: "+80%", label: "Conversion Rate Lift" },
       { value: "1.1% to 1.98%", label: "CVR Improvement" },
-      { value: "$20K+", label: "Revenue in Period" },
+      { value: "$20K+", label: "Revenue Generated" },
     ],
     problems: [
-      "Outdated, visually weak Shopify theme that failed to communicate brand premium",
-      "Confusing navigation making it hard to find products or understand the range",
-      "Weak product pages with poor imagery layout, no social proof, and unclear CTAs",
-      "Cart and checkout riddled with friction - high abandonment at every step",
-      "No bundle or upsell mechanic despite having a perfect product catalogue for it",
-      "Landing pages non-existent - all paid traffic sent to the homepage",
+      "Outdated Shopify experience that didn’t reflect the premium brand identity",
+      "Confusing navigation made product discovery difficult",
+      "Weak product pages with poor hierarchy, limited trust signals, and unclear CTAs",
+      "Cart and checkout friction leading to high abandonment",
+      "No upsell or bundle strategy to increase AOV",
+      "Paid traffic directed to generic pages instead of conversion-focused landing pages",
     ],
     whatWeDid: [
-      "Full Shopify website redesign - visually elevated to match the premium brand identity",
-      "Rebuilt navigation architecture for clarity and product discoverability",
-      "Redesigned all PDPs with stronger imagery, trust signals, reviews, and clear CTAs",
-      "Optimised the cart drawer and checkout flow, reducing abandonment at each step",
-      "Built a 'Build Your Bundle' page to boost AOV and encourage multi-product purchases",
-      "Developed targeted landing pages for paid traffic with conversion-focused layouts",
+      "Completely redesigned the website to match the premium brand aesthetic",
+      "Rebuilt navigation and collection structure for better usability",
+      "Redesigned product pages with stronger imagery, reviews, trust signals, and clear CTAs",
+      "Optimized cart drawer and checkout flow to reduce friction",
+      "Introduced bundle and cross-sell strategies to increase average order value",
+      "Created dedicated landing pages aligned with paid ad campaigns",
     ],
     dataProof: [
-      {
+           {
         image:
-          "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/a05024abd_Screenshot2026-05-09at171404.png",
-        caption: "Total Sales - +108% YoY, $20,330 in period",
-      },
-      {
-        image:
-          "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/dd0fbf03c_Screenshot2026-05-09at171441.png",
-        caption: "Conversion Rate - 1.1% to 1.98% (+80%)",
+          "/data proof-mylas-moss.png",
+        caption: "Data Proof",
       },
     ],
   },
   {
     image:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/2b8c845c8_Screenshot2026-05-09at193916.png",
-    alt: "Funk Socials",
-    category: "Web Design",
-    subcategory: "Marketing Agency",
+      "/podcasthealth1.png",
+    alt: "podcast health1",
+    category: "Health & Wellness",
+    subcategory: "Healthcare Podcast",
     title:
-      "From Dead to Full of Life - A Creative Marketing Agency Website Built in Under 2 Weeks",
+      "Redesigning a Healthcare Podcast Platform for Better Engagement & Growth",
     stats: [
-      { value: "< 2 weeks", label: "Full Build Time" },
-      { value: "Ground Up", label: "Complete Rebuild" },
+      { value: "< 3 weeks", label: "Full Build Time" },
+      { value: "Ground Up", label: "UX Optimization" },
+      { value: "Modern", label: " Healthcare Media Experience" },
     ],
-    client: "Funk Socials",
+    client: "Tim",
+    platform: "Wordpress",
+    modalImage:
+      "/podcasthealth2.png",
+    visitUrl: "https://podcasthealth.com/",
+    introduction:
+      "Podcast Health is a podcast-focused healthcare and wellness platform helping users discover trusted health conversations, expert insights, and wellness resources.",
+    metrics: [
+      { value: "< 3 weeks", label: "Full Build Time" },
+      { value: "Ground Up", label: "UI & UX Optimization" },
+      { value: "Modern", label: " Healthcare Media Experience" },
+    ],
+    problems: [
+      "Outdated UI that lacked a modern and trustworthy healthcare aesthetic",
+      "Homepage messaging wasn’t clearly communicating value",
+      "Weak CTA placements reduced conversion opportunities",
+      "Content hierarchy made podcast discovery difficult",
+      "Poor mobile optimization affected engagement",
+      "Limited landing page strategy for campaigns and traffic sources",
+      "Low engagement flow between podcast episodes and conversion points",
+    ],
+    whatWeDid: [
+      "Redesigned the website with a clean, modern healthcare-focused UI",
+      "Improved homepage messaging and visual hierarchy",
+      "Added stronger CTA sections for subscriptions and inquiries",
+      "Optimized podcast and content pages for better user engagement",
+      "Enhanced mobile responsiveness and browsing experience",
+      "Built conversion-focused landing pages for campaigns",
+      "Improved navigation and content discoverability",
+    ],
+    dataProof: [
+      {
+        image:
+          "/data-proff-podcast.png",
+        caption: "Data Proff",
+      },
+    ],
+  },
+  {
+    image:
+      "/wildsuccess1.png",
+    alt: "wild success1",
+    category: "Coaching",
+    subcategory: "Leadership Coaching",
+    title:
+      "From Generic Corporate Website to a High-Trust Lead Generation Platform",
+    stats: [
+      { value: "+62%", label: "increase in qualified lead submissions" },
+      { value: "+47%", label: "improvement in landing page conversion rate" },
+      { value: "-35%", label: "reduction in bounce rate across key program pages" },
+    ],
+    client: "Gigi",
     platform: "Webflow",
     modalImage:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/a483876fa_Screenshot2026-05-10at000433.png",
-    visitUrl: "https://funksocials.digital",
+      "/wildsuccess2.png",
+    visitUrl: "https://www.wildsuccess.global/",
     introduction:
-      "Funk Socials is a social media marketing agency with a bold brand vision and serious creative energy. They reached out wanting to stand out in a crowded market - but their original website was holding them back badly. We saw the promise beneath the surface and rebuilt everything from scratch.",
+      "Wild Success Global is a global personal development and coaching platform offering NLP training, coaching certifications, and transformational programs. Despite strong brand authority, large audience base, and global recognition, the website experience was not fully aligned with its positioning as a high-trust, conversion-driven coaching ecosystem. Traffic was present, but lead quality and conversion consistency were not optimized.",
     metrics: [
-      { value: "< 2 weeks", label: "Full Build Time" },
-      { value: "Ground Up", label: "Complete Rebuild" },
+      { value: "+62%", label: "increase in qualified lead submissions" },
+      { value: "+47%", label: "improvement in landing page conversion rate" },
+      { value: "-35%", label: "reduction in bounce rate across key program pages" },
+      { value: "+52%", label: "increase in average session duration" },
+      { value: "+38%", label: "more users progressing from homepage → program pages" },
     ],
     problems: [
-      "Original website was so poor it had to be hidden - not exaggerating",
-      "No visual identity online to match the quality of their actual work",
-      "Failing to communicate their creative edge in a crowded agency market",
-      "Zero lead generation from the website - it was a dead end for growth",
+      "Website felt like a content-heavy corporate platform, not a high-converting funnel",
+      "Messaging was broad and not focused on clear user transformation paths",
+      "Weak hierarchy in presenting programs, making decision-making harder",
+      "Lack of structured trust-building flow (proof, authority, outcomes not emphasized early)",
+      "CTA placement was inconsistent across key pages",
+      "Multiple programs created confusion instead of guided user journeys",
+      "No strong funnel segmentation for different user intents (coaching, certification, mentoring)",
     ],
     whatWeDid: [
-      "Rebuilt the entire website from scratch in under 2 weeks",
-      "Created an immersive, cinematic landing page with dark aesthetic and bold typography",
-      "Designed custom motion and visual effects that reflect the brand's creative energy",
-      "Built a conversion-focused layout to turn visitors into genuine leads",
-      "Delivered one of the most creatively exciting builds we've worked on",
-    ],
+      "Repositioned the website experience into a conversion-focused lead generation platform",
+      "Built a clearer information hierarchy around transformation-based outcomes",
+      "Structured program presentation into guided user pathways (beginner → advanced)",
+      "Optimized CTA placement across key sections for higher engagement",
+      "Simplified navigation to reduce cognitive overload",
+      "Aligned messaging with user intent (growth, coaching career, certification)",
+      "Improved funnel clarity for different audience segments",
+      ],
     dataProof: [
       {
         image:
-          "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/532dc9367_Screenshot2026-05-09at175018.png",
-        caption: "Funk Socials - funksocials.digital",
-      },
-    ],
-  },
-  {
-    image:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/55b77d400_Screenshot2026-05-09at193927.png",
-    alt: "LIHA Beauty",
-    category: "Skincare",
-    subcategory: "Beauty & Wellness",
-    title:
-      "Full Shopify Rebuild for an Award-Winning Natural Skincare Brand Rooted in West African Botanical Tradition",
-    stats: [
-      { value: "Ground Up", label: "Full Shopify Rebuild" },
-      { value: "Cleaner", label: "Backend & Codebase" },
-      { value: "Elevated", label: "Brand-Level Storefront" },
-    ],
-    client: "LIHA Beauty",
-    platform: "Shopify",
-    modalImage:
-      "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/b75e9d60a_Screenshot2026-05-10at000454.png",
-    visitUrl: "https://lihabeauty.com",
-    introduction:
-      "LIHA Beauty creates natural, vegan skincare rooted in the botanical traditions of West Africa and traditional English aromatherapy - made in small batches with a strong emphasis on ritual, community, and ingredient integrity. The product, story, and taste level were already world-class. The site just needed to catch up.",
-    metrics: [
-      { value: "Ground Up", label: "Full Shopify Rebuild" },
-      { value: "Cleaner", label: "Backend & Codebase" },
-      { value: "Elevated", label: "Brand-Level Storefront" },
-    ],
-    problems: [
-      "Years of accumulated legacy code weighing down the store's performance and flexibility",
-      "Clunky structure and theme limitations blocking brand expression",
-      "Digital experience no longer reflected the quality and care behind the products",
-      "Hard to maintain and scale without a clean technical foundation",
-    ],
-    whatWeDid: [
-      "Rebuilt the Shopify store from the ground up - no patches, a clean slate",
-      "Fully decluttered the backend and removed all legacy technical debt",
-      "Reworked the storefront so the digital experience matches the brand's quality level",
-      "Improved site structure, flexibility, and long-term usability for the team",
-      "Created a stronger, scalable foundation to grow the brand from",
-    ],
-    dataProof: [
-      {
-        image:
-          "https://media.base44.com/images/public/68d18eabe7cc45973ea6b8f9/001f1bb5e_Screenshot2026-05-09at172319.png",
-        caption: "LIHA Beauty - New Shopify storefront",
+          "/proven-resultnew.png",
+  
+        caption: "Proven Result",
       },
     ],
     testimonial: {
       rating: 5,
-      timeAgo: "8 weeks ago",
+      timeAgo: "2 weeks ago",
       quote:
-        "Working with Growth Needle to revamp the LIHA Beauty website was an excellent experience from start to finish. The team was incredibly professional, responsive, and organized throughout the entire process. They met every deadline exactly as promised and delivered precisely what we asked for. What stood out most was their flexibility whenever we needed adjustments or refinements; they were quick to accommodate and ensured everything aligned with our vision. Beyond their technical expertise, they were simply a pleasure to work with. The entire collaboration felt smooth, efficient, and collaborative, which made a significant difference during a major website update. I highly recommend Growth Needle to anyone looking for a reliable and skilled team to support their website development or revamp.",
-      author: "— LIHA Accounts",
+        "Working with Clip & Code on the Wild Success Global website revamp was a smooth and effective experience. They quickly understood our challenges and helped us restructure the site into a clearer, more conversion-focused platform. The new layout feels more intuitive for users and better aligned with our goals. Communication was easy throughout, and the execution was timely and well-handled.",
+      author: "— Gigi",
     },
   },
 ];
