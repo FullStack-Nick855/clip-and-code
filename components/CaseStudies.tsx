@@ -66,7 +66,7 @@ const CASES: CaseStudy[] = [
 
 export default function CaseStudies() {
   return (
-    <section id="case-studies" className="relative py-16 md:py-24">
+    <section id="case-studies-1" className="relative py-16 md:py-24">
       <div className="container-wide">
         <SectionHeader
           eyebrow="Selected work"

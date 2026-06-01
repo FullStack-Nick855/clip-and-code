@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import CaseStudiesPortifolio from "@/components/CaseStudiesPortifolio";
 import Process from "@/components/Process";
 import TrustedExperience from "@/components/TrustedExperience";
 import Services from "@/components/Services";
@@ -16,7 +17,8 @@ export default function HomePage() {
       <TrustedExperience />
       <Services />
       <Industries />
-      <CaseStudies />
+      <CaseStudiesPortifolio />
+      {/* <CaseStudies /> */}
       <WhyUs />
       <CTABanner />
       <Testimonials />
