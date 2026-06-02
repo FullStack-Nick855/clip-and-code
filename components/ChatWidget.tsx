@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 const PHONE = "917657855295";
-const FOUNDER = "Gourav (Nick)";
+const FOUNDER = "Gavy (Nick)";
 const BRAND = "Clip & Code";
 const POPUP_KEY = "cc_chat_popup_dismissed_v1";
 

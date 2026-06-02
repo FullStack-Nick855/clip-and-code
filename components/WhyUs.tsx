@@ -64,7 +64,7 @@ export default function WhyUs() {
               first time.
             </>
           }
-          description="Founded by Gourav (Nick) — 15+ years building enterprise software, leading product engineering teams and shipping under real regulatory and scale pressure."
+          description="Founded by Gavy (Nick) — 15+ years building enterprise software, leading product engineering teams and shipping under real regulatory and scale pressure."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -111,7 +111,7 @@ export default function WhyUs() {
             <div>
               <div className="chip">Founder</div>
               <h3 className="mt-3 font-display text-2xl font-semibold text-white md:text-3xl">
-                Gourav{" "}
+                Gavy {" "}
                 <span className="text-white/45">(Nick)</span> — Senior Software
                 Consultant
               </h3>
