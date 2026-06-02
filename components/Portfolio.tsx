@@ -1,5 +1,5 @@
 "use client";
-
+import SectionHeader from "./SectionHeader";
 import { useState } from "react";
 import { caseStudies, type CaseStudy } from "./portfolioContent";
 
@@ -39,6 +39,18 @@ export default function Portfolio() {
   return (
     <>
       <section className="coverflow-section">
+        <div className="container-wide">
+          <SectionHeader
+            eyebrow="Selected work"
+            title={
+              <>
+                Real systems.{" "}
+                <span className="text-accent-gradient">Real outcomes.</span>
+              </>
+            }
+              description="A snapshot of recent engagements across our consulting practice — names anonymized where required. Full case studies available on request."
+            />
+        </div>
         <div className="coverflow-wrapper">
           {caseStudies.map((slide, index) => (
             <div
@@ -211,18 +223,57 @@ export default function Portfolio() {
           justify-content: center;
           align-items: center;
           perspective: 2200px;
+          margin-top: 30px;
         }
 
-        .cover-card {
-          position: absolute;
-          width: 360px;
-          border-radius: 18px;
-          overflow: hidden;
-          background: #111;
-          cursor: pointer;
-          transition: all 0.7s ease;
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-        }
+     .cover-card {
+  position: absolute;
+  width: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.7s ease;
+
+  background: linear-gradient(
+    180deg,
+    rgba(20, 28, 45, 0.75) 0%,
+    rgba(12, 18, 30, 0.9) 100%
+  );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cover-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.02)
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+
 
         .active {
           z-index: 10;
@@ -342,15 +393,29 @@ export default function Portfolio() {
           gap: 12px;
           margin-top: 20px;
         }
-        .controls button {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          border: 1px solid rgba(0, 0, 0, 0.15);
-          background: #fff;
-          cursor: pointer;
-          font-size: 18px;
-        }
+     .controls button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(20, 28, 45, 0.85);
+  color: #ffffff;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+  font-size: 18px;
+
+  transition: all 0.3s ease;
+}
+
+.controls button:hover {
+  background: rgba(34, 46, 75, 0.95);
+  transform: translateY(-2px);
+}
 
         /* ---------- Modal ---------- */
         .modal-overlay {
