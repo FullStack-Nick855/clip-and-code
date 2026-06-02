@@ -86,7 +86,7 @@ const organizationLdJson = {
     "Senior software consultancy specializing in enterprise applications, AI automation, SaaS platforms, Shopify growth and modern product experiences.",
   founder: {
     "@type": "Person",
-    name: "Gourav",
+    name: "Gavy",
     alternateName: "Nick",
     jobTitle: "Senior Software Consultant",
     description:
