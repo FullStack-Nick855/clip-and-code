@@ -1,60 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { caseStudies, type CaseStudy } from "./portfolioContent";
 
-export default function CaseStudySlider() {
-  const slides = [
-    {
-      title: "We Increased Their CVR by 80% and Doubled Their Revenue",
-      category: "E-Commerce",
-      subcategory: "Pet Accessories",
-      company: "Remy + Roo",
-      color: "#0d1b2a",
-    },
-    {
-      title: "Agency Website Built in Under 2 Weeks",
-      category: "Web Design",
-      subcategory: "Marketing Agency",
-      company: "Funk Socials",
-      color: "#111111",
-    },
-    {
-      title: "Full Shopify Rebuild for an Award-Winning Skincare Brand",
-      category: "Skincare",
-      subcategory: "Beauty & Wellness",
-      company: "LIHA Beauty",
-      color: "#1a0f06",
-    },
-    {
-      title: "Redesigned Onboarding That Cut Drop-off by 60%",
-      category: "SaaS",
-      subcategory: "B2B Platform",
-      company: "FlowDesk",
-      color: "#102010",
-    },
-    {
-      title: "Luxury Fashion Store Rebuild That Tripled AOV",
-      category: "Fashion",
-      subcategory: "D2C Brand",
-      company: "Velour Studio",
-      color: "#1a0a1a",
-    },
-  ];
+type Position = "active" | "left1" | "left2" | "right1" | "right2" | "hidden";
 
+export default function Portfolio() {
   const [active, setActive] = useState(2);
-  const [selectedSlide, setSelectedSlide] = useState<any>(null);
+  const [selectedSlide, setSelectedSlide] = useState<CaseStudy | null>(null);
 
-  const total = slides.length;
+  const total = caseStudies.length;
 
-  const next = () => {
-    setActive((prev) => (prev + 1) % total);
-  };
+  const next = () => setActive((prev) => (prev + 1) % total);
+  const prev = () => setActive((prev) => (prev - 1 + total) % total);
 
-  const prev = () => {
-    setActive((prev) => (prev - 1 + total) % total);
-  };
-
-  const getPosition = (index: number) => {
+  const getPosition = (index: number): Position => {
     let diff = index - active;
 
     if (diff > total / 2) diff -= total;
@@ -80,19 +40,21 @@ export default function CaseStudySlider() {
     <>
       <section className="coverflow-section">
         <div className="coverflow-wrapper">
-          {slides.map((slide, index) => (
+          {caseStudies.map((slide, index) => (
             <div
-              key={index}
+              key={slide.id}
               className={`cover-card ${getPosition(index)}`}
               onClick={() => {
-                setActive(index);
-                setSelectedSlide(slide);
+                // Clicking a side card brings it to the front;
+                // clicking the active card opens the modal.
+                if (index === active) {
+                  setSelectedSlide(slide);
+                } else {
+                  setActive(index);
+                }
               }}
             >
-              <div
-                className="cover-image"
-                style={{ background: slide.color }}
-              >
+              <div className="cover-image" style={{ background: slide.color }}>
                 <div>
                   {slide.category}
                   <br />
@@ -109,14 +71,21 @@ export default function CaseStudySlider() {
                 <h3>{slide.title}</h3>
 
                 <div className="metrics">
-                  <div>+108% Sales Growth</div>
-                  <div>+80% Conversion Rate</div>
-                  <div>Improved UX & Performance</div>
+                  {slide.metrics.map((metric) => (
+                    <div key={metric}>{metric}</div>
+                  ))}
                 </div>
 
                 <div className="footer">
                   <span>{slide.company}</span>
-                  <button>Read More →</button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedSlide(slide);
+                    }}
+                  >
+                    Read More →
+                  </button>
                 </div>
               </div>
             </div>
@@ -124,33 +93,30 @@ export default function CaseStudySlider() {
         </div>
 
         <div className="controls">
-          <button onClick={prev}>←</button>
-          <button onClick={next}>→</button>
+          <button onClick={prev} aria-label="Previous">
+            ←
+          </button>
+          <button onClick={next} aria-label="Next">
+            →
+          </button>
         </div>
       </section>
 
       {/* Modal */}
       {selectedSlide && (
-        <div
-          className="modal-overlay"
-          onClick={() => setSelectedSlide(null)}
-        >
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay" onClick={() => setSelectedSlide(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button
               className="close-btn"
               onClick={() => setSelectedSlide(null)}
+              aria-label="Close"
             >
               ✕
             </button>
 
             <div
               className="modal-hero"
-              style={{
-                background: selectedSlide.color,
-              }}
+              style={{ background: selectedSlide.color }}
             >
               {selectedSlide.company}
             </div>
@@ -163,27 +129,15 @@ export default function CaseStudySlider() {
 
               <h2>{selectedSlide.title}</h2>
 
-              <p>
-                This is where your complete case study content will go.
-                Add screenshots, project details, goals, challenges,
-                process, and final results.
-              </p>
+              <p>{selectedSlide.description}</p>
 
               <div className="modal-stats">
-                <div>
-                  <strong>108%</strong>
-                  <span>Sales Growth</span>
-                </div>
-
-                <div>
-                  <strong>80%</strong>
-                  <span>Conversion Rate Increase</span>
-                </div>
-
-                <div>
-                  <strong>3x</strong>
-                  <span>Performance Improvement</span>
-                </div>
+                {selectedSlide.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -214,7 +168,7 @@ export default function CaseStudySlider() {
           background: #111;
           cursor: pointer;
           transition: all 0.7s ease;
-          box-shadow: 0 25px 60px rgba(0,0,0,.35);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
         }
 
         .active {
@@ -225,26 +179,26 @@ export default function CaseStudySlider() {
 
         .left1 {
           z-index: 8;
-          opacity: .85;
-          transform: translateX(-320px) rotateY(40deg) scale(.9);
+          opacity: 0.85;
+          transform: translateX(-320px) rotateY(40deg) scale(0.9);
         }
 
         .left2 {
           z-index: 5;
-          opacity: .45;
-          transform: translateX(-620px) rotateY(55deg) scale(.75);
+          opacity: 0.45;
+          transform: translateX(-620px) rotateY(55deg) scale(0.75);
         }
 
         .right1 {
           z-index: 8;
-          opacity: .85;
-          transform: translateX(320px) rotateY(-40deg) scale(.9);
+          opacity: 0.85;
+          transform: translateX(320px) rotateY(-40deg) scale(0.9);
         }
 
         .right2 {
           z-index: 5;
-          opacity: .45;
-          transform: translateX(620px) rotateY(-55deg) scale(.75);
+          opacity: 0.45;
+          transform: translateX(620px) rotateY(-55deg) scale(0.75);
         }
 
         .hidden {
@@ -269,6 +223,7 @@ export default function CaseStudySlider() {
           display: flex;
           gap: 10px;
           margin-bottom: 12px;
+          align-items: center;
         }
 
         .metrics {
@@ -280,13 +235,14 @@ export default function CaseStudySlider() {
 
         .metrics div {
           padding: 10px;
-          background: rgba(255,255,255,.05);
+          background: rgba(255, 255, 255, 0.05);
           border-radius: 8px;
         }
 
         .footer {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           margin-top: 16px;
         }
 
@@ -314,7 +270,7 @@ export default function CaseStudySlider() {
         .modal-overlay {
           position: fixed;
           inset: 0;
-          background: rgba(0,0,0,.85);
+          background: rgba(0, 0, 0, 0.85);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -354,7 +310,7 @@ export default function CaseStudySlider() {
 
         .modal-tags span {
           padding: 8px 14px;
-          background: rgba(255,255,255,.08);
+          background: rgba(255, 255, 255, 0.08);
           border-radius: 999px;
         }
 
@@ -364,20 +320,20 @@ export default function CaseStudySlider() {
         }
 
         .modal-body p {
-          color: rgba(255,255,255,.7);
+          color: rgba(255, 255, 255, 0.7);
           line-height: 1.8;
         }
 
         .modal-stats {
           display: grid;
-          grid-template-columns: repeat(3,1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 20px;
           margin-top: 40px;
         }
 
         .modal-stats div {
           padding: 24px;
-          background: rgba(255,255,255,.05);
+          background: rgba(255, 255, 255, 0.05);
           border-radius: 14px;
         }
 
@@ -395,7 +351,7 @@ export default function CaseStudySlider() {
           height: 48px;
           border-radius: 50%;
           border: none;
-          background: rgba(255,255,255,.1);
+          background: rgba(255, 255, 255, 0.1);
           color: white;
           cursor: pointer;
           font-size: 18px;
