@@ -50,9 +50,9 @@ export const caseStudies: CaseStudy[] = [
     subcategory: "Luxury Watches",
     title: "Turning Brand Love Into Revenue Through Strategic Shopify CRO",
     stats: [
-     { value: "+95%", label: "Revenue Growth" },
+       /* { value: "+95%", label: "Revenue Growth" },
       { value: "+72%", label: "Conversion Rate Increase" },
-      { value: "+58%", label: "Increase in Qualified Leads" },
+      { value: "+58%", label: "Increase in Qualified Leads" },  */
     ],
     client: "David",
     platform: "Shopify",
@@ -99,9 +99,9 @@ export const caseStudies: CaseStudy[] = [
     subcategory: "Personal Development",
     title: "Transforming a Personal Brand Into a High-Converting Coaching Platform",
     stats: [
-    { value: "+65%", label: "Consultation Inquiry Growth" },
+      /* { value: "+65%", label: "Consultation Inquiry Growth" },
       { value: "+48%", label: "Engagement Rate Improvement" },
-      { value: "+55%", label: "Lead Generation Increase" },
+      { value: "+55%", label: "Lead Generation Increase" },  */ 
     ],
     client: "Tereson",
     platform: "GoHighLevel (GHL)",
@@ -148,9 +148,9 @@ export const caseStudies: CaseStudy[] = [
     subcategory: "Book Publishing",
     title: "Transforming a Publishing Website Into a Lead Generation & Author Acquisition Platform",
     stats: [
-    { value: "+65%", label: "Consultation Inquiry Growth" },
+    /*{ value: "+65%", label: "Consultation Inquiry Growth" },
       { value: "+48%", label: "Engagement Rate Improvement" },
-      { value: "+55%", label: "Lead Generation Increase" },
+      { value: "+55%", label: "Lead Generation Increase" },*/
     ],
     client: "Travis",
     platform: "Wix",
@@ -198,9 +198,9 @@ export const caseStudies: CaseStudy[] = [
     title:
       "Redesigning a Healthcare Podcast Platform for Better Engagement & Growth",
     stats: [
-      { value: "< 3 weeks", label: "Full Build Time" },
+      /* { value: "< 3 weeks", label: "Full Build Time" },
       { value: "Ground Up", label: "UX Optimization" },
-      { value: "Modern", label: "Healthcare Media Experience" },
+      { value: "Modern", label: "Healthcare Media Experience" }, */
     ],
     client: "Tim",
     platform: "Wordpress",
@@ -246,9 +246,9 @@ export const caseStudies: CaseStudy[] = [
     title:
       "From Generic Corporate Website to a High-Trust Lead Generation Platform",
     stats: [
-      { value: "+62%", label: "increase in qualified lead submissions" },
+        /* { value: "+62%", label: "increase in qualified lead submissions" },
       { value: "+47%", label: "improvement in landing page conversion rate" },
-      { value: "-35%", label: "reduction in bounce rate across key program pages" },
+      { value: "-35%", label: "reduction in bounce rate across key program pages" },  */ 
     ],
     client: "Gigi",
     platform: "Webflow",
