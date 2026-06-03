@@ -8,16 +8,19 @@ import CaseStudies from "@/components/CaseStudies";
 import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
+import CaseStudySlider from "@/components/Portfolio";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+     
       <Process />
       <TrustedExperience />
       <Services />
       <Industries />
-      <CaseStudiesPortifolio />
+      <CaseStudySlider/>
+       {/*<CaseStudiesPortifolio />*/}
       {/* <CaseStudies /> */}
       <WhyUs />
       <CTABanner />

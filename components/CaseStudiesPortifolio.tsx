@@ -46,7 +46,7 @@ import SectionHeader from "./SectionHeader";
 const caseStudies: CaseStudy[] = [
   {
     image:
-      "/mylas-moss1.png",
+      "/iwatchusa1.png",
     alt: "mylas moss1",
     category: "E-commerce",
     subcategory: "Health & Wellness Brand",
@@ -59,8 +59,8 @@ const caseStudies: CaseStudy[] = [
     client: "Growth Needle",
     platform: "Shopify",
     modalImage:
-      "/mylas-moss2.png",
-    visitUrl: "https://www.mylasmoss.com/",
+      "/iwatchusa2.png",
+    visitUrl: "https://iwatchusa.com/",
     introduction:
       "Mylas Moss now has a website experience that finally matches the quality of its products and brand identity — resulting in stronger conversions, higher customer confidence, and scalable growth.",
     metrics: [
