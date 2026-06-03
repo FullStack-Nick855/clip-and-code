@@ -1,7 +1,7 @@
 "use client";
 import SectionHeader from "./SectionHeader";
-import { useState } from "react";
 import { caseStudies, type CaseStudy } from "./portfolioContent";
+import { useState, useEffect } from "react";
 
 type Position = "active" | "left1" | "left2" | "right1" | "right2" | "hidden";
 
@@ -13,6 +13,15 @@ export default function Portfolio() {
 
   const next = () => setActive((prev) => (prev + 1) % total);
   const prev = () => setActive((prev) => (prev - 1 + total) % total);
+
+  // Auto-slide every 4 seconds; pauses while a modal is open
+  useEffect(() => {
+    if (selectedSlide) return; // don't advance behind an open modal
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [selectedSlide, total]);
 
   const getPosition = (index: number): Position => {
     let diff = index - active;
