@@ -235,28 +235,35 @@ export default function Portfolio() {
           margin-top: 30px;
         }
 
-     .cover-card {
+.cover-card {
   position: absolute;
-  width: 360px;
-  border-radius: 8px;
+  width: 380px;
+  border-radius: 22px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.7s ease;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 
-  background: linear-gradient(
-    180deg,
-    rgba(20, 28, 45, 0.75) 0%,
-    rgba(12, 18, 30, 0.9) 100%
-  );
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.12),
+      rgba(255,255,255,0.02)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18,25,40,0.95),
+      rgba(8,12,22,0.98)
+    );
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255,255,255,0.12);
 
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 35px 80px rgba(0,0,0,.45),
+    0 15px 35px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.15);
 }
 
 .cover-card::before {
@@ -284,31 +291,39 @@ export default function Portfolio() {
 
 
 
-        .active {
-          z-index: 10;
-          opacity: 1;
-          transform: translateX(0) scale(1);
-        }
-        .left1 {
-          z-index: 8;
-          opacity: 0.85;
-          transform: translateX(-320px) rotateY(40deg) scale(0.9);
-        }
-        .left2 {
-          z-index: 5;
-          opacity: 0.45;
-          transform: translateX(-620px) rotateY(55deg) scale(0.75);
-        }
-        .right1 {
-          z-index: 8;
-          opacity: 0.85;
-          transform: translateX(320px) rotateY(-40deg) scale(0.9);
-        }
-        .right2 {
-          z-index: 5;
-          opacity: 0.45;
-          transform: translateX(620px) rotateY(-55deg) scale(0.75);
-        }
+.active {
+  z-index: 10;
+  opacity: 1;
+    transform: translateX(0) scale(1.06);
+
+ box-shadow:
+  0 30px 80px rgba(0,0,0,0.45),
+  0 0 40px rgba(59,130,246,0.15);
+}
+
+.left1 {
+  z-index: 15;
+  opacity: 0.9;
+  transform: translateX(-400px) rotateY(35deg) scale(0.88);
+}
+
+.left2 {
+  z-index: 10;
+  opacity: 0.45;
+  transform: translateX(-760px) rotateY(50deg) scale(0.74);
+}
+
+.right1 {
+  z-index: 15;
+  opacity: 0.9;
+  transform: translateX(400px) rotateY(-35deg) scale(0.88);
+}
+
+.right2 {
+  z-index: 10;
+  opacity: 0.45;
+  transform: translateX(760px) rotateY(-50deg) scale(0.74);
+}
         .hidden {
           opacity: 0;
           pointer-events: none;
@@ -319,17 +334,28 @@ export default function Portfolio() {
           overflow: hidden;
           background: #0c0c0c;
         }
-        .cover-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+       .cover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s ease;
+}
 
-        .cover-content {
-          padding: 20px;
-          color: white;
-        }
+.cover-card:hover .cover-image img {
+  transform: scale(1.08);
+}
+
+     .cover-content {
+  padding: 24px;
+  color: #fff;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.02) 0%,
+      rgba(255,255,255,0) 100%
+    );
+}
 
         .tags {
           display: flex;
@@ -337,21 +363,35 @@ export default function Portfolio() {
           align-items: center;
           margin-bottom: 12px;
         }
-        .tags span {
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        .tags small {
-          color: rgba(255, 255, 255, 0.55);
-        }
+     .tags span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #9ecbff;
 
-        .cover-content h3 {
-          font-size: 18px;
-          line-height: 1.35;
-          margin: 0;
-        }
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(158,203,255,0.08);
+  border: 1px solid rgba(158,203,255,0.15);
+}
+     .tags small {
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+}
+
+.cover-content h3 {
+  font-size: 21px;
+  line-height: 1.35;
+  margin: 0;
+
+  font-weight: 600;
+  letter-spacing: -0.02em;
+    line-clamp: 4;
+
+    color: rgba(255,255,255,0.92);
+}
 
         .metrics {
           display: flex;
@@ -359,43 +399,66 @@ export default function Portfolio() {
           gap: 8px;
           margin-top: 15px;
         }
-        .metrics div {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          gap: 10px;
-          padding: 10px 12px;
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 8px;
-        }
-        .metrics strong {
-          font-size: 15px;
-        }
-        .metrics span {
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.6);
-          text-align: right;
-        }
+     .metrics div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  padding: 12px 14px;
+
+ background: rgba(255,255,255,0.06);
+ border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 12px;
+
+  transition: all 0.3s ease;
+}
+      .metrics strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+    .metrics span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  text-align: right;
+}
+.metrics div:hover {
+  background: rgba(255,255,255,0.07);
+}
         .footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin-top: 16px;
         }
-        .footer > span {
-          font-size: 13px;
-          color: rgba(255, 255, 255, 0.6);
-        }
-        .footer button {
-          background: none;
-          border: none;
-          color: white;
-          cursor: pointer;
-          font-size: 14px;
-          white-space: nowrap;
-        }
+     .footer > span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.3px;
+}
+  .footer button {
+  border: none;
+  cursor: pointer;
 
+  padding: 12px 18px;
+  border-radius: 999px;
+
+    background: rgba(255,255,255,0.08);
+   border: 1px solid rgba(255,255,255,0.12);
+
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+
+
+.footer button:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
         .controls {
           display: flex;
           justify-content: center;
@@ -628,6 +691,30 @@ export default function Portfolio() {
           z-index: 2;
         }
 
+
+        @media (max-width: 768px) {
+  .coverflow-wrapper {
+    height: 500px;
+  }
+
+  .cover-card {
+    width: 300px;
+  }
+
+  .left1 {
+    transform: translateX(-140px) scale(0.85);
+  }
+
+  .right1 {
+    transform: translateX(140px) scale(0.85);
+  }
+
+  .left2,
+  .right2 {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
         @media (max-width: 700px) {
           .modal-columns {
             grid-template-columns: 1fr;
