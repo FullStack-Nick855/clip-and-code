@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Case Studies", href: "/#case-studies" },
+  { label: "Portfolio", href: "/#case-studies" },
   { label: "About", href: "/#about" },
 ];
 

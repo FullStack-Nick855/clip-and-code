@@ -5,7 +5,7 @@ const NAV = {
   Practice: [
     { label: "Services", href: "/#services" },
     { label: "Industries", href: "/#industries" },
-    { label: "Case Studies", href: "/#case-studies" },
+    { label: "Portfolio", href: "/#case-studies" },
     { label: "Insights", href: "/#insights" },
   ],
   Capabilities: [
