@@ -14,14 +14,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-     
       <Process />
       <TrustedExperience />
       <Services />
       <Industries />
       <CaseStudySlider/>
-       {/*<CaseStudiesPortifolio />*/}
-      {/* <CaseStudies /> */}
       <WhyUs />
       <CTABanner />
       <Testimonials />
