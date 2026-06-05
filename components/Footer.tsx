@@ -17,7 +17,7 @@ const NAV = {
   Company: [
     { label: "About", href: "/#about" },
     { label: "Book a Call", href: "https://calendly.com/clipandcode/30min" },
-    { label: "Contact", href: "mailto:hello@clipandcode.com" },
+    { label: "Contact", href: "mailto:business@clipandcode.com" },
     { label: "Privacy", href: "/privacy" },
   ],
 };
@@ -40,10 +40,10 @@ export default function Footer() {
             </p>
             <div className="mt-6 space-y-1.5 text-sm">
               <a
-                href="mailto:hello@clipandcode.com"
+                href="mailto:business@clipandcode.com"
                 className="block text-white/75 transition-colors hover:text-white"
               >
-                hello@clipandcode.com
+                business@clipandcode.com
               </a>
               <a
                 href="https://calendly.com/clipandcode/30min"

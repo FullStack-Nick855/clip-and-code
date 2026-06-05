@@ -91,7 +91,7 @@ export default function WhyUs() {
         </div>
 
         {/* Founder card */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
@@ -145,24 +145,24 @@ export default function WhyUs() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
 }
 
-function FounderAvatar() {
-  return (
-    <div className="relative mx-auto h-32 w-32 md:h-40 md:w-40">
-      <div className="absolute inset-0 rounded-full bg-accent-gradient opacity-30 blur-2xl" />
-      <div className="relative flex h-full w-full overflow-hidden rounded-full border border-white/15 bg-gradient-to-br from-ink-700 to-ink-900 shadow-glow-md">
-        <Image
-          src="/founder.png"
-          alt="Founder"
-          fill
-          className="object-cover"
-        />
-      </div>
-    </div>
-  );
-}
+// function FounderAvatar() {
+//   return (
+//     <div className="relative mx-auto h-32 w-32 md:h-40 md:w-40">
+//       <div className="absolute inset-0 rounded-full bg-accent-gradient opacity-30 blur-2xl" />
+//       <div className="relative flex h-full w-full overflow-hidden rounded-full border border-white/15 bg-gradient-to-br from-ink-700 to-ink-900 shadow-glow-md">
+//         <Image
+//           src="/founder.png"
+//           alt="Founder"
+//           fill
+//           className="object-cover"
+//         />
+//       </div>
+//     </div>
+//   );
+// }

@@ -63,11 +63,11 @@ export default function CTABanner() {
                   <ArrowUpRight className="h-4 w-4" aria-hidden />
                 </a>
                 <a
-                  href="mailto:hello@clipandcode.com"
+                  href="mailto:business@clipandcode.com"
                   className="btn-ghost"
                 >
                   <Mail className="h-4 w-4" aria-hidden />
-                  hello@clipandcode.com
+                  business@clipandcode.com
                 </a>
               </div>
             </div>

@@ -81,7 +81,7 @@ const organizationLdJson = {
   name: "Clip & Code",
   alternateName: "Clip and Code",
   url: "https://clipandcode.com",
-  email: "hello@clipandcode.com",
+  email: "business@clipandcode.com",
   description:
     "Senior software consultancy specializing in enterprise applications, AI automation, SaaS platforms, Shopify growth and modern product experiences.",
   founder: {

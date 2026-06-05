@@ -60,11 +60,11 @@ export default function EcomCTA() {
                   <ArrowUpRight className="h-4 w-4" aria-hidden />
                 </a>
                 <a
-                  href="mailto:hello@clipandcode.com"
+                  href="mailto: business@clipandcode.com"
                   className="btn-ghost"
                 >
                   <Mail className="h-4 w-4" aria-hidden />
-                  hello@clipandcode.com
+                  business@clipandcode.com
                 </a>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function EcomCTA() {
         </motion.div>
 
         <p className="mt-6 text-center text-xs text-white/40">
-          Prefer to write first? <Link href="mailto:hello@clipandcode.com" className="underline-offset-4 hover:underline">hello@clipandcode.com</Link>
+          Prefer to write first? <Link href="mailto:business@clipandcode.com" className="underline-offset-4 hover:underline">business@clipandcode.com</Link>
         </p>
       </div>
     </section>
