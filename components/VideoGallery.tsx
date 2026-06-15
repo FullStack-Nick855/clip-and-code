@@ -2,15 +2,13 @@
 
 // components/VideoGallery.tsx
 // ---------------------------------------------------------------------------
-// "Editing-suite" gallery — scroll-performance fix.
-//   - During scroll NO video bytes load (kills the hang). File cards show a
-//     poster image if provided, else a designed placeholder.
-//   - The actual video loads ONLY on hover (one at a time) with a spinner,
-//     and full playback happens in the lightbox on click.
-//   - YouTube thumbnails use hqdefault (always exists) -> mqdefault -> placeholder.
-//   - Numbered pagination (9 per page). Default category: UGC & Ads.
-// Optional: add `poster: "/videos/xyz.jpg"` to any item in videoes.ts to show a
-// still instantly with zero video loading. No external deps. Tailwind only.
+// "Editing-suite" gallery — thumbnail + performance fix.
+//   - YouTube thumbnails now use hqdefault (ALWAYS exists) -> no black cards,
+//     no slow failed maxresdefault requests. Falls back to mqdefault, then to a
+//     designed placeholder that sits BEHIND every card (never pure black).
+//   - Self-hosted clips load nothing until hover (preload="none").
+//   - Numbered pagination (9 per page) keeps the DOM small.
+// No external deps. Tailwind only. Import path kept as your "@/lib/videoes".
 // ---------------------------------------------------------------------------
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
@@ -23,6 +21,7 @@ import {
 
 const PER_PAGE = 9;
 
+// hqdefault exists for EVERY public video; mqdefault is the smaller fallback.
 const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 const ytThumbFallback = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 
@@ -47,13 +46,6 @@ function FilmIcon({ className = "" }: { className?: string }) {
       <rect x="3" y="4" width="18" height="16" rx="2" />
       <path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4" />
     </svg>
-  );
-}
-function Spinner() {
-  return (
-    <div className="absolute inset-0 z-10 flex items-center justify-center">
-      <span className="h-9 w-9 animate-spin rounded-full border-2 border-white/20 border-t-amber-400" />
-    </div>
   );
 }
 
@@ -165,33 +157,35 @@ function VideoCard({
 }) {
   const portrait = video.orientation === "portrait";
   const isFile = video.source === "file";
-  const poster = (video as { poster?: string }).poster; // optional still image
-  const [hover, setHover] = useState(false);
-  const [buffering, setBuffering] = useState(false);
-  const [imgOk, setImgOk] = useState(true);
+  const [imgOk, setImgOk] = useState(true); // media still loading/ok
+  const vidRef = useRef<HTMLVideoElement | null>(null);
   const { ref, inView } = useInView<HTMLButtonElement>();
 
-  const num = String(index + 1).padStart(2, "0");
+  const playPreview = () => {
+    const v = vidRef.current;
+    if (v) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+  };
+  const stopPreview = () => {
+    const v = vidRef.current;
+    if (v) {
+      v.pause();
+      try {
+        v.currentTime = 0.5;
+      } catch {}
+    }
+  };
 
-  const onEnter = () => {
-    if (isFile) {
-      setBuffering(true);
-      setHover(true);
-    }
-  };
-  const onLeave = () => {
-    if (isFile) {
-      setHover(false);
-      setBuffering(false);
-    }
-  };
+  const num = String(index + 1).padStart(2, "0");
 
   return (
     <button
       ref={ref}
       onClick={onOpen}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
+      onMouseEnter={isFile ? playPreview : undefined}
+      onMouseLeave={isFile ? stopPreview : undefined}
       style={{ transitionDelay: `${Math.min(index % PER_PAGE, 8) * 45}ms` }}
       className={`group mb-6 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left ring-1 ring-transparent transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-amber-400/40 hover:ring-amber-400/20 hover:shadow-[0_24px_60px_-20px_rgba(245,165,36,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
         inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -204,7 +198,7 @@ function VideoCard({
         </div>
 
         {video.source === "youtube" ? (
-          // YouTube: cheap thumbnail, never touches a video file.
+          // YouTube: hqdefault (always exists) -> mqdefault -> placeholder
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={ytThumb(video.src)}
@@ -218,44 +212,28 @@ function VideoCard({
                 img.dataset.fallback = "1";
                 img.src = ytThumbFallback(video.src);
               } else {
-                setImgOk(false);
+                setImgOk(false); // both failed -> reveal placeholder
               }
             }}
             className={`relative h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08] ${
               imgOk ? "" : "hidden"
             }`}
           />
-        ) : hover ? (
-          // Self-hosted: load + play ONLY while hovered. Spinner until ready.
-          <>
-            <video
-              src={video.src}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-label={video.title}
-              onCanPlay={() => setBuffering(false)}
-              onPlaying={() => setBuffering(false)}
-              onWaiting={() => setBuffering(true)}
-              onError={() => {
-                setBuffering(false);
-                setImgOk(false);
-              }}
-              className="relative h-full w-full object-cover"
-            />
-            {buffering && <Spinner />}
-          </>
-        ) : poster ? (
-          // Optional still image — instant, zero video loading on scroll.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={poster}
-            alt={video.title}
-            loading="lazy"
-            decoding="async"
-            className="relative h-full w-full object-cover"
+        ) : inView ? (
+          // Self-hosted: show a still frame (#t=0.5) once in view, play on hover.
+          // preload="metadata" keeps it light; only the current page mounts.
+          <video
+            ref={vidRef}
+            src={`${video.src}#t=0.5`}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={video.title}
+            onError={() => setImgOk(false)} // file missing -> reveal placeholder
+            className={`relative h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] ${
+              imgOk ? "" : "hidden"
+            }`}
           />
         ) : null}
 
@@ -313,7 +291,7 @@ function getPages(page: number, count: number): (number | "…")[] {
 
 /* --------------------------- Gallery ----------------------------- */
 export default function VideoGallery() {
-  const [active, setActive] = useState<CategoryId>("ugc"); // default: UGC & Ads
+  const [active, setActive] = useState<CategoryId>("ugc");
   const [open, setOpen] = useState<VideoItem | null>(null);
   const [page, setPage] = useState(1);
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -343,10 +321,12 @@ export default function VideoGallery() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#08080B] text-white">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_90%_at_50%_-10%,rgba(245,165,36,0.14),transparent)]" />
+        <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_90%_at_50%_-10%,rgba(245,165,36,0.16),transparent)]" />
+        <div className="absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-amber-500/10 blur-[120px]" />
+        <div className="absolute -right-40 top-2/3 h-[420px] w-[420px] rounded-full bg-orange-600/10 blur-[120px]" />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
