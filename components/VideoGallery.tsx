@@ -157,9 +157,26 @@ function VideoCard({
 }) {
   const portrait = video.orientation === "portrait";
   const isFile = video.source === "file";
-  const [hover, setHover] = useState(false);
-  const [imgOk, setImgOk] = useState(true); // youtube thumb still loading/ok
+  const [imgOk, setImgOk] = useState(true); // media still loading/ok
+  const vidRef = useRef<HTMLVideoElement | null>(null);
   const { ref, inView } = useInView<HTMLButtonElement>();
+
+  const playPreview = () => {
+    const v = vidRef.current;
+    if (v) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+  };
+  const stopPreview = () => {
+    const v = vidRef.current;
+    if (v) {
+      v.pause();
+      try {
+        v.currentTime = 0.5;
+      } catch {}
+    }
+  };
 
   const num = String(index + 1).padStart(2, "0");
 
@@ -167,8 +184,8 @@ function VideoCard({
     <button
       ref={ref}
       onClick={onOpen}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={isFile ? playPreview : undefined}
+      onMouseLeave={isFile ? stopPreview : undefined}
       style={{ transitionDelay: `${Math.min(index % PER_PAGE, 8) * 45}ms` }}
       className={`group mb-6 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left ring-1 ring-transparent transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-amber-400/40 hover:ring-amber-400/20 hover:shadow-[0_24px_60px_-20px_rgba(245,165,36,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
         inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -202,17 +219,21 @@ function VideoCard({
               imgOk ? "" : "hidden"
             }`}
           />
-        ) : hover ? (
-          // Self-hosted: load + play ONLY when hovered.
+        ) : inView ? (
+          // Self-hosted: show a still frame (#t=0.5) once in view, play on hover.
+          // preload="metadata" keeps it light; only the current page mounts.
           <video
-            src={video.src}
-            autoPlay
+            ref={vidRef}
+            src={`${video.src}#t=0.5`}
             muted
             loop
             playsInline
-            preload="none"
+            preload="metadata"
             aria-label={video.title}
-            className="relative h-full w-full object-cover"
+            onError={() => setImgOk(false)} // file missing -> reveal placeholder
+            className={`relative h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] ${
+              imgOk ? "" : "hidden"
+            }`}
           />
         ) : null}
 
@@ -270,7 +291,7 @@ function getPages(page: number, count: number): (number | "…")[] {
 
 /* --------------------------- Gallery ----------------------------- */
 export default function VideoGallery() {
-  const [active, setActive] = useState<CategoryId>("all");
+  const [active, setActive] = useState<CategoryId>("ugc");
   const [open, setOpen] = useState<VideoItem | null>(null);
   const [page, setPage] = useState(1);
   const gridRef = useRef<HTMLDivElement | null>(null);
