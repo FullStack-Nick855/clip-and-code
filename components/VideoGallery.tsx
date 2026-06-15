@@ -2,14 +2,13 @@
 
 // components/VideoGallery.tsx
 // ---------------------------------------------------------------------------
-// "Editing-suite" video gallery — upgraded.
-//   - REC / showreel header with film-grain texture + gradient mesh
-//   - Timeline filter bar with an active "playhead"
-//   - Masonry of clips with mono timecode labels + catalog numbers
-//   - Self-hosted cards PLAY a muted preview on hover (feels like a real reel)
-//   - Scroll-reveal staggered entrance, reduced-motion safe
-//   - Lightbox plays YouTube embeds OR self-hosted <video>
-// No external deps. Tailwind only. Import path kept as your "@/lib/videoes".
+// "Editing-suite" gallery — performance pass.
+//   - Self-hosted clips load NOTHING until hover (preload="none", mount-on-hover)
+//     => fixes the load-time hang from many <video> elements.
+//   - Modern numbered pagination (9 per page) keeps the DOM small.
+//   - REC showreel header, film grain, timeline filter bar, scroll reveal,
+//     mono timecode labels, lightbox. No external deps. Tailwind only.
+// Import path kept as your "@/lib/videoes".
 // ---------------------------------------------------------------------------
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
@@ -19,6 +18,8 @@ import {
   type VideoItem,
   type CategoryId,
 } from "@/lib/videoes";
+
+const PER_PAGE = 9;
 
 /* ----------------------------- Icons ----------------------------- */
 function PlayIcon({ className = "" }: { className?: string }) {
@@ -32,6 +33,14 @@ function CloseIcon({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className} aria-hidden>
       <path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" />
+    </svg>
+  );
+}
+function FilmIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={className} aria-hidden>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4" />
     </svg>
   );
 }
@@ -97,7 +106,6 @@ function Lightbox({ video, onClose }: { video: VideoItem; onClose: () => void })
           portrait ? "max-w-[420px]" : "max-w-5xl"
         }`}
       >
-        {/* window bar */}
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
           <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
@@ -145,25 +153,8 @@ function VideoCard({
 }) {
   const portrait = video.orientation === "portrait";
   const isFile = video.source === "file";
-  const vidRef = useRef<HTMLVideoElement | null>(null);
+  const [hover, setHover] = useState(false);
   const { ref, inView } = useInView<HTMLButtonElement>();
-
-  const enter = () => {
-    const v = vidRef.current;
-    if (v) {
-      v.currentTime = 0;
-      v.play().catch(() => {});
-    }
-  };
-  const leave = () => {
-    const v = vidRef.current;
-    if (v) {
-      v.pause();
-      try {
-        v.currentTime = 0.5;
-      } catch {}
-    }
-  };
 
   const num = String(index + 1).padStart(2, "0");
 
@@ -171,20 +162,22 @@ function VideoCard({
     <button
       ref={ref}
       onClick={onOpen}
-      onMouseEnter={isFile ? enter : undefined}
-      onMouseLeave={isFile ? leave : undefined}
-      style={{ transitionDelay: `${Math.min(index, 8) * 45}ms` }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{ transitionDelay: `${Math.min(index % PER_PAGE, 8) * 45}ms` }}
       className={`group mb-6 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left ring-1 ring-transparent transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-amber-400/40 hover:ring-amber-400/20 hover:shadow-[0_24px_60px_-20px_rgba(245,165,36,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
         inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
       <div className={`relative ${portrait ? "aspect-[9/16]" : "aspect-video"}`}>
         {video.source === "youtube" ? (
+          // YouTube thumbnail (cheap, lazy) — falls back to hqdefault.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={video.thumbnail}
             alt={video.title}
             loading="lazy"
+            decoding="async"
             onError={(e) => {
               const img = e.currentTarget;
               if (!img.dataset.fallback) {
@@ -194,27 +187,31 @@ function VideoCard({
             }}
             className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
           />
-        ) : (
+        ) : hover ? (
+          // Self-hosted: load + play ONLY when hovered (nothing downloads before).
           <video
-            ref={vidRef}
-            src={`${video.src}#t=0.5`}
+            src={video.src}
+            autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             aria-label={video.title}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            className="h-full w-full object-cover"
           />
+        ) : (
+          // Lightweight placeholder — zero network cost.
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-white/[0.07] via-transparent to-amber-500/[0.06]">
+            <FilmIcon className="h-10 w-10 text-white/15" />
+          </div>
         )}
 
         {/* gradient veil */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 transition-opacity duration-500 group-hover:from-black/70" />
 
-        {/* top row: catalog number + format chip */}
+        {/* top row */}
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3.5">
-          <span className="font-mono text-[11px] tracking-widest text-white/55">
-            / {num}
-          </span>
+          <span className="font-mono text-[11px] tracking-widest text-white/55">/ {num}</span>
           <span className="rounded-md border border-white/15 bg-black/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white/70 backdrop-blur">
             {portrait ? "9:16" : "16:9"}
           </span>
@@ -227,17 +224,16 @@ function VideoCard({
           </span>
         </div>
 
-        {/* bottom: title + source */}
+        {/* bottom */}
         <div className="absolute inset-x-0 bottom-0 p-4">
           <div className="flex items-end justify-between gap-3">
-            <h3 className="translate-y-0.5 text-[15px] font-semibold leading-tight text-white drop-shadow transition-transform duration-300 group-hover:translate-y-0">
+            <h3 className="text-[15px] font-semibold leading-tight text-white drop-shadow">
               {video.title}
             </h3>
             <span className="shrink-0 rounded-full bg-amber-400/90 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-black">
               {video.source === "youtube" ? "YT" : "MP4"}
             </span>
           </div>
-          {/* faux scrubber line that fills on hover */}
           <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-white/10">
             <div className="h-full w-0 rounded-full bg-amber-400 transition-all duration-[2500ms] ease-linear group-hover:w-full" />
           </div>
@@ -247,17 +243,47 @@ function VideoCard({
   );
 }
 
+/* --------------------------- Pagination -------------------------- */
+function getPages(page: number, count: number): (number | "…")[] {
+  if (count <= 7) return Array.from({ length: count }, (_, i) => i + 1);
+  const set = new Set<number>([1, count, page, page - 1, page + 1]);
+  const sorted = [...set].filter((p) => p >= 1 && p <= count).sort((a, b) => a - b);
+  const out: (number | "…")[] = [];
+  let prev = 0;
+  for (const p of sorted) {
+    if (p - prev > 1) out.push("…");
+    out.push(p);
+    prev = p;
+  }
+  return out;
+}
+
 /* --------------------------- Gallery ----------------------------- */
 export default function VideoGallery() {
   const [active, setActive] = useState<CategoryId>("all");
   const [open, setOpen] = useState<VideoItem | null>(null);
+  const [page, setPage] = useState(1);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
   const filtered = useMemo(
     () => (active === "all" ? ALL_VIDEOS : ALL_VIDEOS.filter((v) => v.category === active)),
     [active]
   );
 
+  // reset to first page whenever the filter changes
+  useEffect(() => {
+    setPage(1);
+  }, [active]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const start = (page - 1) * PER_PAGE;
+  const paged = filtered.slice(start, start + PER_PAGE);
+
   const close = useCallback(() => setOpen(null), []);
+  const goTo = (p: number) => {
+    setPage(Math.min(Math.max(1, p), pageCount));
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const total = ALL_VIDEOS.length;
   const formats = new Set(ALL_VIDEOS.map((v) => v.orientation)).size;
@@ -305,24 +331,17 @@ export default function VideoGallery() {
             shorts and UGC ads, all in one reel.
           </p>
 
-          {/* stat strip */}
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 font-mono text-xs text-white/40">
-            <span>
-              <span className="text-amber-400">{String(total).padStart(2, "0")}</span> total clips
-            </span>
+            <span><span className="text-amber-400">{String(total).padStart(2, "0")}</span> total clips</span>
             <span className="hidden h-3 w-px bg-white/15 sm:block" />
-            <span>
-              <span className="text-amber-400">{String(categories.length - 1).padStart(2, "0")}</span> categories
-            </span>
+            <span><span className="text-amber-400">{String(categories.length - 1).padStart(2, "0")}</span> categories</span>
             <span className="hidden h-3 w-px bg-white/15 sm:block" />
-            <span>
-              <span className="text-amber-400">{String(formats).padStart(2, "0")}</span> formats
-            </span>
+            <span><span className="text-amber-400">{String(formats).padStart(2, "0")}</span> formats</span>
           </div>
         </header>
 
         {/* -------- Timeline filter bar -------- */}
-        <div className="mb-14 sm:mb-16">
+        <div className="mb-12 sm:mb-14">
           <div className="relative">
             <div
               className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2"
@@ -354,16 +373,60 @@ export default function VideoGallery() {
             </div>
           </div>
           <p className="mt-6 text-center font-mono text-xs text-white/35">
-            showing {String(filtered.length).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            showing {String(paged.length).padStart(2, "0")} / {String(filtered.length).padStart(2, "0")}
+            {pageCount > 1 ? `  ·  page ${page}/${pageCount}` : ""}
           </p>
         </div>
 
         {/* ---------------- Masonry grid ---------------- */}
-        <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
-          {filtered.map((v, i) => (
-            <VideoCard key={v.id} video={v} index={i} onOpen={() => setOpen(v)} />
+        <div ref={gridRef} className="scroll-mt-24 columns-1 gap-6 sm:columns-2 lg:columns-3">
+          {paged.map((v, i) => (
+            <VideoCard key={v.id} video={v} index={start + i} onOpen={() => setOpen(v)} />
           ))}
         </div>
+
+        {/* ---------------- Pagination ---------------- */}
+        {pageCount > 1 && (
+          <nav
+            aria-label="Gallery pages"
+            className="mt-14 flex items-center justify-center gap-2 font-mono text-sm"
+          >
+            <button
+              onClick={() => goTo(page - 1)}
+              disabled={page === 1}
+              className="flex h-10 items-center rounded-full border border-white/12 px-4 text-white/70 transition hover:border-amber-400/40 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              ‹ Prev
+            </button>
+
+            {getPages(page, pageCount).map((p, idx) =>
+              p === "…" ? (
+                <span key={`e${idx}`} className="px-1.5 text-white/30">…</span>
+              ) : (
+                <button
+                  key={p}
+                  onClick={() => goTo(p)}
+                  aria-current={p === page ? "page" : undefined}
+                  className={`h-10 w-10 rounded-full transition ${
+                    p === page
+                      ? "bg-amber-400 text-black shadow-[0_0_24px_-6px_rgba(245,165,36,0.9)]"
+                      : "border border-white/12 text-white/70 hover:border-amber-400/40 hover:text-white"
+                  }`}
+                >
+                  {p}
+                </button>
+              )
+            )}
+
+            <button
+              onClick={() => goTo(page + 1)}
+              disabled={page === pageCount}
+              className="flex h-10 items-center rounded-full border border-white/12 px-4 text-white/70 transition hover:border-amber-400/40 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              Next ›
+            </button>
+          </nav>
+        )}
       </div>
 
       {open && <Lightbox video={open} onClose={close} />}
