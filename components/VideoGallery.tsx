@@ -2,13 +2,13 @@
 
 // components/VideoGallery.tsx
 // ---------------------------------------------------------------------------
-// "Editing-suite" gallery — performance pass.
-//   - Self-hosted clips load NOTHING until hover (preload="none", mount-on-hover)
-//     => fixes the load-time hang from many <video> elements.
-//   - Modern numbered pagination (9 per page) keeps the DOM small.
-//   - REC showreel header, film grain, timeline filter bar, scroll reveal,
-//     mono timecode labels, lightbox. No external deps. Tailwind only.
-// Import path kept as your "@/lib/videoes".
+// "Editing-suite" gallery — thumbnail + performance fix.
+//   - YouTube thumbnails now use hqdefault (ALWAYS exists) -> no black cards,
+//     no slow failed maxresdefault requests. Falls back to mqdefault, then to a
+//     designed placeholder that sits BEHIND every card (never pure black).
+//   - Self-hosted clips load nothing until hover (preload="none").
+//   - Numbered pagination (9 per page) keeps the DOM small.
+// No external deps. Tailwind only. Import path kept as your "@/lib/videoes".
 // ---------------------------------------------------------------------------
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
@@ -20,6 +20,10 @@ import {
 } from "@/lib/videoes";
 
 const PER_PAGE = 9;
+
+// hqdefault exists for EVERY public video; mqdefault is the smaller fallback.
+const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const ytThumbFallback = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 
 /* ----------------------------- Icons ----------------------------- */
 function PlayIcon({ className = "" }: { className?: string }) {
@@ -154,6 +158,7 @@ function VideoCard({
   const portrait = video.orientation === "portrait";
   const isFile = video.source === "file";
   const [hover, setHover] = useState(false);
+  const [imgOk, setImgOk] = useState(true); // youtube thumb still loading/ok
   const { ref, inView } = useInView<HTMLButtonElement>();
 
   const num = String(index + 1).padStart(2, "0");
@@ -170,25 +175,35 @@ function VideoCard({
       }`}
     >
       <div className={`relative ${portrait ? "aspect-[9/16]" : "aspect-video"}`}>
+        {/* designed placeholder ALWAYS behind — card is never pure black */}
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-white/[0.07] via-[#101014] to-amber-500/[0.06]">
+          <FilmIcon className="h-10 w-10 text-white/15" />
+        </div>
+
         {video.source === "youtube" ? (
-          // YouTube thumbnail (cheap, lazy) — falls back to hqdefault.
+          // YouTube: hqdefault (always exists) -> mqdefault -> placeholder
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={video.thumbnail}
+            src={ytThumb(video.src)}
             alt={video.title}
-            loading="lazy"
+            loading={index < 3 ? "eager" : "lazy"}
             decoding="async"
+            referrerPolicy="no-referrer"
             onError={(e) => {
               const img = e.currentTarget;
               if (!img.dataset.fallback) {
                 img.dataset.fallback = "1";
-                img.src = `https://img.youtube.com/vi/${video.src}/hqdefault.jpg`;
+                img.src = ytThumbFallback(video.src);
+              } else {
+                setImgOk(false); // both failed -> reveal placeholder
               }
             }}
-            className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
+            className={`relative h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08] ${
+              imgOk ? "" : "hidden"
+            }`}
           />
         ) : hover ? (
-          // Self-hosted: load + play ONLY when hovered (nothing downloads before).
+          // Self-hosted: load + play ONLY when hovered.
           <video
             src={video.src}
             autoPlay
@@ -197,14 +212,9 @@ function VideoCard({
             playsInline
             preload="none"
             aria-label={video.title}
-            className="h-full w-full object-cover"
+            className="relative h-full w-full object-cover"
           />
-        ) : (
-          // Lightweight placeholder — zero network cost.
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-white/[0.07] via-transparent to-amber-500/[0.06]">
-            <FilmIcon className="h-10 w-10 text-white/15" />
-          </div>
-        )}
+        ) : null}
 
         {/* gradient veil */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 transition-opacity duration-500 group-hover:from-black/70" />
@@ -270,7 +280,6 @@ export default function VideoGallery() {
     [active]
   );
 
-  // reset to first page whenever the filter changes
   useEffect(() => {
     setPage(1);
   }, [active]);
@@ -290,13 +299,11 @@ export default function VideoGallery() {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#08080B] text-white">
-      {/* gradient mesh */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_90%_at_50%_-10%,rgba(245,165,36,0.16),transparent)]" />
         <div className="absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-amber-500/10 blur-[120px]" />
         <div className="absolute -right-40 top-2/3 h-[420px] w-[420px] rounded-full bg-orange-600/10 blur-[120px]" />
       </div>
-      {/* film grain */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
         style={{
@@ -306,7 +313,6 @@ export default function VideoGallery() {
       />
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:py-28">
-        {/* ---------------- Header ---------------- */}
         <header className="mb-14 sm:mb-20">
           <div className="mb-6 flex items-center gap-3">
             <span className="relative flex h-2.5 w-2.5">
@@ -340,7 +346,6 @@ export default function VideoGallery() {
           </div>
         </header>
 
-        {/* -------- Timeline filter bar -------- */}
         <div className="mb-12 sm:mb-14">
           <div className="relative">
             <div
@@ -378,19 +383,14 @@ export default function VideoGallery() {
           </p>
         </div>
 
-        {/* ---------------- Masonry grid ---------------- */}
         <div ref={gridRef} className="scroll-mt-24 columns-1 gap-6 sm:columns-2 lg:columns-3">
           {paged.map((v, i) => (
             <VideoCard key={v.id} video={v} index={start + i} onOpen={() => setOpen(v)} />
           ))}
         </div>
 
-        {/* ---------------- Pagination ---------------- */}
         {pageCount > 1 && (
-          <nav
-            aria-label="Gallery pages"
-            className="mt-14 flex items-center justify-center gap-2 font-mono text-sm"
-          >
+          <nav aria-label="Gallery pages" className="mt-14 flex items-center justify-center gap-2 font-mono text-sm">
             <button
               onClick={() => goTo(page - 1)}
               disabled={page === 1}
