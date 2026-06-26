@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Portfolio", href: "/#case-studies" },
+  { label: "Portfolio", href: "/ClipAndCode_Portfolio.html", newTab: true },
   { label: "About", href: "/#about" },
 ];
 
@@ -49,6 +49,8 @@ export default function Navigation() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  target={link.newTab ? "_blank" : undefined}
+                  rel={link.newTab ? "noopener noreferrer" : undefined}
                   className={cn(
                     "relative rounded-full px-4 py-2 text-sm transition-colors hover:bg-white/[0.05]",
                     link.highlight
