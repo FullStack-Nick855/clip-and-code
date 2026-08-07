@@ -1,3 +1,12 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import Logo from "./Logo";
+import { cn } from "@/lib/utils";
+
 const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
