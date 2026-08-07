@@ -8,7 +8,7 @@ const NAV_LINKS = [
     submenu: [
       { label: "Web", href: "/portfolio/web" },
       { label: "Logos", href: "/portfolio/logos" },
-      { label: "E-commerce", href: "/portfolio/ecommerce" },
+      { label: "E-commerce", href: "/ecommerce" },
     ],
   },
 
