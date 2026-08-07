@@ -1,20 +1,19 @@
-"use client";
-
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import Logo from "./Logo";
-import { cn } from "@/lib/utils";
-
 const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Portfolio", href: "/ClipAndCode_Portfolio.html", newTab: true },
+
+  {
+    label: "Portfolio",
+    submenu: [
+      { label: "Web", href: "/portfolio/web" },
+      { label: "Logos", href: "/portfolio/logos" },
+      { label: "E-commerce", href: "/portfolio/ecommerce" },
+    ],
+  },
+
   { label: "About", href: "/#about" },
 ];
-
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
