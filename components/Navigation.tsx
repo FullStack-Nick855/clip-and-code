@@ -11,7 +11,16 @@ const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Portfolio", href: "/ClipAndCode_Portfolio.html", newTab: true },
+  {
+    label: "Portfolio",
+    href: "/ClipAndCode_Portfolio.html",
+    newTab: true,
+    submenu: [
+      { label: "Web", href: "/portfolio/web" },
+      { label: "Logos", href: "/portfolio/logos" },
+      { label: "E-commerce", href: "/ecommerce" },
+    ],
+  },
   { label: "About", href: "/#about" },
 ];
 
@@ -21,8 +30,13 @@ export default function Navigation() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -42,8 +56,10 @@ export default function Navigation() {
               : "border-white/[0.06] bg-white/[0.02] backdrop-blur-md"
           )}
         >
-          <Logo size="md" />
+          {/* Logo */}
+          <Logo />
 
+          {/* Desktop Navigation */}
           <ul className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -59,6 +75,7 @@ export default function Navigation() {
                   )}
                 >
                   {link.label}
+
                   {link.highlight && (
                     <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent-cyan align-middle" />
                   )}
@@ -67,6 +84,7 @@ export default function Navigation() {
             ))}
           </ul>
 
+          {/* Right Side */}
           <div className="flex items-center gap-2">
             <a
               href="https://calendly.com/clipandcode/30min"
@@ -76,19 +94,26 @@ export default function Navigation() {
             >
               <span className="hidden sm:inline">Book a Call</span>
               <span className="sm:hidden">Book</span>
+
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
             </a>
+
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white lg:hidden"
             >
-              {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {open ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
             </button>
           </div>
         </nav>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -103,8 +128,10 @@ export default function Navigation() {
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
-                      onClick={() => setOpen(false)}
                       href={link.href}
+                      onClick={() => setOpen(false)}
+                      target={link.newTab ? "_blank" : undefined}
+                      rel={link.newTab ? "noopener noreferrer" : undefined}
                       className={cn(
                         "flex items-center justify-between rounded-xl px-4 py-3 text-sm hover:bg-white/[0.05]",
                         link.highlight
@@ -113,6 +140,7 @@ export default function Navigation() {
                       )}
                     >
                       <span>{link.label}</span>
+
                       {link.highlight && (
                         <span className="rounded-full bg-accent-gradient px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white">
                           New
