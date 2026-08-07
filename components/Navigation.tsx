@@ -5,6 +5,7 @@ const NAV_LINKS = [
 
   {
     label: "Portfolio",
+    href: "/portfolio",
     submenu: [
       { label: "Web", href: "/portfolio/web" },
       { label: "Logos", href: "/portfolio/logos" },
