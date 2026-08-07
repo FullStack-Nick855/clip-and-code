@@ -15,9 +15,9 @@ const NAV_LINKS = [
     label: "Portfolio",
     href: "/ClipAndCode_Portfolio.html",
     submenu: [
-      { label: "Web Development", href: "/portfolio/web" },
-      { label: "Logo Design", href: "/portfolio/logos" },
-      { label: "E-commerce", href: "/ecommerce" },
+      { label: "Web", href: "/clipandcode_portfolio_web.html" },
+      { label: "Logo", href: "/clipandcode_portfolio_logos.html" },
+      { label: "E-commerce", href: "clipandcode_portfolio_shopify.html" },
     ],
   },
   { label: "About", href: "/#about" },
