@@ -11,7 +11,16 @@ const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "E-commerce", href: "/ecommerce", highlight: true },
   { label: "Industries", href: "/#industries" },
-  { label: "Portfolio", href: "/ClipAndCode_Portfolio.html", newTab: true },
+
+  {
+    label: "Portfolio",
+    submenu: [
+      { label: "Web", href: "/portfolio/web" },
+      { label: "Logos", href: "/portfolio/logos" },
+      { label: "E-commerce", href: "/ecommerce" },
+    ],
+  },
+
   { label: "About", href: "/#about" },
 ];
 
