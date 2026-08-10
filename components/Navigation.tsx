@@ -61,25 +61,40 @@ export default function Navigation() {
           <ul className="hidden items-center gap-2 lg:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.label} className="relative group">
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-all hover:bg-white/5",
-                    link.highlight
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
-                  )}
-                >
-                  {link.label}
+                {link.submenu ? (
+                  <div
+                    className={cn(
+                      "flex cursor-pointer items-center gap-1 rounded-full px-4 py-2 text-sm transition-all hover:bg-white/5",
+                      link.highlight
+                        ? "text-white"
+                        : "text-white/70 hover:text-white"
+                    )}
+                  >
+                    {link.label}
 
-                  {link.submenu && (
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
-                  )}
 
-                  {link.highlight && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-                  )}
-                </Link>
+                    {link.highlight && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-all hover:bg-white/5",
+                      link.highlight
+                        ? "text-white"
+                        : "text-white/70 hover:text-white"
+                    )}
+                  >
+                    {link.label}
+
+                    {link.highlight && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                    )}
+                  </Link>
+                )}
 
                 {/* Dropdown */}
                 {link.submenu && (
@@ -103,7 +118,7 @@ export default function Navigation() {
 
           {/* Right */}
           <div className="flex items-center gap-2">
-            <a
+            
               href="https://calendly.com/clipandcode/30min"
               target="_blank"
               rel="noopener noreferrer"
@@ -143,15 +158,31 @@ export default function Navigation() {
               <ul>
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block rounded-xl px-4 py-3 text-white/80 hover:bg-white/5 hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.submenu ? (
+                      <button
+                        type="button"
+                        onClick={() => setPortfolioOpen((prev) => !prev)}
+                        className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-white/80 hover:bg-white/5 hover:text-white"
+                      >
+                        {link.label}
+                        <ChevronDown
+                          className={cn(
+                            "h-4 w-4 transition-transform duration-200",
+                            portfolioOpen && "rotate-180"
+                          )}
+                        />
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-xl px-4 py-3 text-white/80 hover:bg-white/5 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
 
-                    {link.submenu && (
+                    {link.submenu && portfolioOpen && (
                       <div className="ml-4 mb-2">
                         {link.submenu.map((item) => (
                           <Link
