@@ -266,7 +266,7 @@
   }
 
 .hero {
-    min-height: 92vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -352,7 +352,25 @@
     font-size: 11px;
     letter-spacing: .3em;
     color: #22d3ee;
-    /* animation: bob 2.4s ease-in-out infinite; */
+    text-align: center;
+}
+.scroll-hint .hint-text{
+    display: block;
+}
+.scroll-hint .arrow{
+    display: block;
+    margin-top: 10px;
+    animation: arrowBob 2.4s ease-in-out infinite;
+}
+@keyframes arrowBob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(8px);}
+}
+.scroll-hint .arrow svg{
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
 }
 
 .bg {
@@ -436,7 +454,7 @@
     <div class="brand"><b>CLIP &amp; CODE</b></div>
     <div class="tag">Software · AI Systems · Shopify Growth</div>
        <div class="kick">P&nbsp;O&nbsp;R&nbsp;T&nbsp;F&nbsp;O&nbsp;L&nbsp;I&nbsp;O&nbsp;&nbsp;·&nbsp;&nbsp;2026</div>
-     <div class="scroll-hint">↓ &nbsp; selected work</div>
+     <div class="scroll-hint"><span class="hint-text">selected work</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg></span></div>
     
   </div>
    
