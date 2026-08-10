@@ -1,14 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowUpRight,
-  Menu,
-  X,
-  ChevronDown,
-} from "lucide-react";
+import { ArrowUpRight, Menu, X, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import { cn } from "@/lib/utils";
 
@@ -19,11 +14,10 @@ const NAV_LINKS = [
   {
     label: "Portfolio",
     href: "/ClipAndCode_Portfolio.html",
-    newTab: true,
     submenu: [
-      { label: "Web", href: "/portfolio/web" },
-      { label: "Logos", href: "/portfolio/logos" },
-      { label: "E-commerce", href: "/ecommerce" },
+      { label: "Web", href: "/clipandcode_portfolio_web.html" },
+      { label: "Logo", href: "/clipandcode_portfolio_logos.html" },
+      { label: "E-commerce", href: "clipandcode_portfolio_shopify.html" },
     ],
   },
   { label: "About", href: "/#about" },
@@ -38,6 +32,7 @@ export default function Navigation() {
     const onScroll = () => setScrolled(window.scrollY > 12);
 
     onScroll();
+
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
@@ -50,88 +45,26 @@ export default function Navigation() {
         scrolled ? "py-2.5" : "py-4"
       )}
     >
-      <nav
-        className={cn(
-          "mx-auto flex items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-300",
-          scrolled
-            ? "border-white/10 bg-ink-900/70 backdrop-blur-xl shadow-card"
-            : "border-white/[0.06] bg-white/[0.02] backdrop-blur-md"
-        )}
-      >
-        {/* Desktop Navigation */}
-        <ul className="hidden items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <li
-              key={link.label}
-              className="relative"
-              onMouseEnter={() => {
-                if (link.submenu) {
-                  setPortfolioOpen(true);
-                }
-              }}
-              onMouseLeave={() => {
-                if (link.submenu) {
-                  setPortfolioOpen(false);
-                }
-              }}
-            >
-              {link.submenu ? (
-                <>
-                  <button
-                    type="button"
-                    className={cn(
-                      "relative flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-colors hover:bg-white/[0.05]",
-                      "text-white/70 hover:text-white"
-                    )}
-                  >
-                    {link.label}
-                    <ChevronDown className="h-3.5 w-3.5" />
-                  </button>
+      <div className="container-wide">
+        <nav
+          className={cn(
+            "mx-auto flex items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-300",
+            scrolled
+              ? "border-white/10 bg-ink-900/70 backdrop-blur-xl shadow-card"
+              : "border-white/[0.06] bg-white/[0.02] backdrop-blur-md"
+          )}
+        >
+          {/* Logo */}
+          <Logo />
 
-                  <AnimatePresence>
-                    {portfolioOpen && (
-                      <motion.div
-                        initial={{
-                          opacity: 0,
-                          y: 8,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        exit={{
-                          opacity: 0,
-                          y: 8,
-                        }}
-                        transition={{
-                          duration: 0.15,
-                        }}
-                        className="absolute left-1/2 top-full mt-2 w-48 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-900/95 p-2 shadow-card backdrop-blur-xl"
-                      >
-                        {link.submenu.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block rounded-xl px-4 py-3 text-sm text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
+          {/* Desktop Navigation */}
+          <ul className="hidden items-center gap-2 lg:flex">
+            {NAV_LINKS.map((link) => (
+              <li key={link.label} className="relative group">
                 <Link
                   href={link.href}
-                  target={link.newTab ? "_blank" : undefined}
-                  rel={
-                    link.newTab
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm transition-colors hover:bg-white/[0.05]",
+                    "flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-all hover:bg-white/5",
                     link.highlight
                       ? "text-white"
                       : "text-white/70 hover:text-white"
@@ -139,148 +72,98 @@ export default function Navigation() {
                 >
                   {link.label}
 
+                  {link.submenu && (
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                  )}
+
                   {link.highlight && (
-                    <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent-cyan align-middle" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
                   )}
                 </Link>
+
+                {/* Dropdown */}
+                {link.submenu && (
+                  <div className="absolute left-0 top-full pt-3 opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                    <div className="w-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/95 shadow-2xl backdrop-blur-xl">
+                      {link.submenu.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block border-b border-white/5 px-5 py-4 text-sm text-white/70 transition hover:bg-white/5 hover:text-white last:border-none"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Right */}
+          <div className="flex items-center gap-2">
+            <a
+              href="https://calendly.com/clipandcode/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary !px-4 !py-2.5 !text-[13px] sm:!px-5"
+            >
+              <span className="hidden sm:inline">Book a Call</span>
+              <span className="sm:hidden">Book</span>
+
+              <ArrowUpRight className="ml-2 h-4 w-4" />
+            </a>
+
+            <button
+              onClick={() => setOpen(!open)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 lg:hidden"
+            >
+              {open ? (
+                <X className="h-5 w-5 text-white" />
+              ) : (
+                <Menu className="h-5 w-5 text-white" />
               )}
-            </li>
-          ))}
-        </ul>
+            </button>
+          </div>
+        </nav>
+      </div>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-2">
-          <a
-            href="https://calendly.com/clipandcode/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary !px-4 !py-2.5 !text-[13px] sm:!px-5"
-          >
-            <span className="hidden sm:inline">
-              Book a Call
-            </span>
-            <span className="sm:hidden">Book</span>
-            <ArrowUpRight
-              className="h-3.5 w-3.5"
-              aria-hidden
-            />
-          </a>
-
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white lg:hidden"
-          >
-            {open ? (
-              <X className="h-4 w-4" />
-            ) : (
-              <Menu className="h-4 w-4" />
-            )}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: -8,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: -8,
-            }}
-            transition={{
-              duration: 0.2,
-            }}
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
             className="container-wide lg:hidden"
           >
-            <div className="mt-2 rounded-2xl border border-white/10 bg-ink-900/95 p-3 backdrop-blur-xl">
-              <ul className="grid">
+            <div className="mt-3 rounded-2xl border border-white/10 bg-slate-900/95 p-3 backdrop-blur-xl">
+              <ul>
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
-                    {link.submenu ? (
-                      <>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setPortfolioOpen(
-                              (v) => !v
-                            )
-                          }
-                          className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm text-white/80 hover:bg-white/[0.05] hover:text-white"
-                        >
-                          <span>{link.label}</span>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="block rounded-xl px-4 py-3 text-white/80 hover:bg-white/5 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
 
-                          <ChevronDown
-                            className={cn(
-                              "h-4 w-4 transition-transform",
-                              portfolioOpen &&
-                                "rotate-180"
-                            )}
-                          />
-                        </button>
-
-                        <AnimatePresence>
-                          {portfolioOpen && (
-                            <motion.div
-                              initial={{
-                                height: 0,
-                                opacity: 0,
-                              }}
-                              animate={{
-                                height: "auto",
-                                opacity: 1,
-                              }}
-                              exit={{
-                                height: 0,
-                                opacity: 0,
-                              }}
-                              className="overflow-hidden pl-4"
-                            >
-                              {link.submenu.map(
-                                (item) => (
-                                  <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    onClick={() =>
-                                      setOpen(false)
-                                    }
-                                    className="block rounded-xl px-4 py-2.5 text-sm text-white/60 hover:bg-white/[0.05] hover:text-white"
-                                  >
-                                    {item.label}
-                                  </Link>
-                                )
-                              )}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        onClick={() => setOpen(false)}
-                        href={link.href}
-                        className={cn(
-                          "flex items-center justify-between rounded-xl px-4 py-3 text-sm hover:bg-white/[0.05]",
-                          link.highlight
-                            ? "text-white"
-                            : "text-white/80 hover:text-white"
-                        )}
-                      >
-                        <span>{link.label}</span>
-
-                        {link.highlight && (
-                          <span className="rounded-full bg-accent-gradient px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white">
-                            New
-                          </span>
-                        )}
-                      </Link>
+                    {link.submenu && (
+                      <div className="ml-4 mb-2">
+                        {link.submenu.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setOpen(false)}
+                            className="block rounded-lg px-4 py-2 text-sm text-white/60 hover:bg-white/5 hover:text-white"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
                     )}
                   </li>
                 ))}
