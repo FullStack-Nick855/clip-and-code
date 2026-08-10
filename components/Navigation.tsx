@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Industries", href: "/#industries" },
   {
     label: "Portfolio",
-    href: "/ClipAndCode_Portfolio.html",
+    href: "#",
     submenu: [
       { label: "Web", href: "/clipandcode_portfolio_web.html" },
       { label: "Logo", href: "/clipandcode_portfolio_logos.html" },
