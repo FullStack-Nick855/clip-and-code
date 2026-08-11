@@ -18,6 +18,7 @@ const NAV_LINKS = [
       { label: "Web", href: "/clipandcode_portfolio_web.html" },
       { label: "Logo", href: "/clipandcode_portfolio_logos.html" },
       { label: "E-commerce", href: "clipandcode_portfolio_shopify.html" },
+      { label: "E-commerce", href: "clip-and-code-portfolio-social-media.html" },
     ],
   },
   { label: "About", href: "/#about" },
