@@ -21,6 +21,7 @@ const NAV_LINKS = [
       { label: "Social Media", href: "clip-and-code-portfolio-social-media.html" },
     ],
   },
+     { label: "Video Editing", href: "/video-editing" },
   { label: "About", href: "/#about" },
 ];
 
