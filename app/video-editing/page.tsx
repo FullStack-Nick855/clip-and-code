@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect } from "react";
 import { Inter } from "next/font/google";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Clapperboard, TrendingUp, ShieldCheck } from "lucide-react";
 import "./video-editing.css";
 import NowEditing from "./NowEditing";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
-
-export const metadata: Metadata = {
-  title: "Clip and Code — Video Editing & Creative Post-Production",
-  description:
-    "Clip and Code — reels, YouTube edits, travel films and brand content cut to hold attention.",
-  alternates: { canonical: "https://clipandcode.com/video-editing" },
-};
 
 const tools = [
   "Premiere Pro", "After Effects", "DaVinci Resolve", "Color Grading",
@@ -57,47 +55,145 @@ const reviews = [
 
 export default function VideoEditingPage() {
   const strip = [...tools, ...tools];
+
+  // "use client" pages can't export `metadata`, so set the tab title here
+  useEffect(() => {
+    document.title = "Clip and Code — Video Editing & Creative Post-Production";
+  }, []);
+
   return (
-    <div className={`ve ${inter.className}`}>
-      <main id="top">
-        {/* ───────── HERO: text on the left, animation on the right ───────── */}
-        <section className="hero">
-          <div className="w">
-            <div className="hero-grid">
-              <div className="hero-text">
-                <div className="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" />
-    <path d="m6.2 5.3 3.1 3.9" />
-    <path d="m12.4 3.4 3.1 4" />
-    <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
-  </svg>Clip and Code · Video Editing for Creators &amp; Brands</div>
-                <h1>
-                  You have 3 seconds.
-                  <br />
-                  <span className="g">I make them count.</span>
-                </h1>
-                <p>I help creators, coaches, agencies, and small brands turn raw footage into sharp videos built for retention: reels, YouTube edits, travel films, launch promos, talking-head content, and paid social ads.</p>
-                <div className="cta">
-                  <a className="btn p" href="#work">Watch the Reel</a>
-                  <a className="btn o" href="https://calendly.com/clipandcode/30min?month=2026-10">Get a Quote</a>
+    <>
+    <section className="relative overflow-hidden pt-32 md:pt-40 ">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="grid-bg absolute inset-0" />
+        <div className="absolute inset-x-0 top-0 h-[600px] bg-radial-spot" />
+      </div>
+
+      <div className="container-wide relative">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* ───────── LEFT ───────── */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="chip mb-6"
+            >
+              <Clapperboard className="h-3.5 w-3.5 text-accent-cyan" />
+              Clip and Code · Video Editing for Creators &amp; Brands
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="font-display text-display-xl text-gradient"
+            >
+              You have 3 seconds. <br />
+              <span className="text-accent-gradient">I make them count.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="mt-6 max-w-xl text-balance text-base leading-relaxed text-white/65 md:text-lg"
+            >
+              I help creators, coaches, agencies, and small brands turn raw
+              footage into sharp videos built for retention: reels, YouTube
+              edits, travel films, launch promos, talking-head content, and
+              paid social ads.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
+            >
+              <Link href="#work" className="btn-primary">
+                Watch the Reel
+              </Link>
+              <Link
+                href="https://calendly.com/clipandcode/30min?month=2026-10"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                Get a Quote
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-xs text-white/45"
+            >
+              <span className="inline-flex items-center gap-2">
+                <TrendingUp className="h-3.5 w-3.5 text-accent-cyan" />
+                Avg. 48–72h turnaround · 100% remote-friendly
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck className="h-3.5 w-3.5 text-accent-teal" />
+                Revision-friendly · Platform-ready exports
+              </span>
+            </motion.div>
+          </div>
+
+          {/* ───────── RIGHT ───────── */}
+          <div className="relative mx-auto w-full max-w-[520px] lg:max-w-none">
+            <div
+              aria-hidden
+              className="absolute -inset-10 -z-10 rounded-[40px] bg-soft-gradient blur-3xl opacity-60"
+            />
+
+            {/* animation card (same border style as the e-commerce card) */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.15 }}
+              className="conic-border relative overflow-hidden rounded-2xl border border-white/10 bg-ink-800/85 shadow-card backdrop-blur-xl"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/imgs/video-editing-animation.svg"
+                alt="Video editing timeline animation"
+                width={900}
+                height={540}
+                className="block h-auto w-full"
+              />
+            </motion.div>
+
+            {/* floating badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.55 }}
+              className="absolute -right-3 -top-6 hidden rounded-2xl border border-white/10 bg-ink-800/90 p-3 shadow-glow-md backdrop-blur-xl md:block animate-float-slower"
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent-gradient shadow-glow-sm">
+                  <Clapperboard className="h-4 w-4 text-white" />
+                </span>
+                <div className="leading-tight">
+                  <div className="text-[11px] text-white/45">Premiere Pro · After Effects</div>
+                  <div className="text-sm font-medium text-white">
+                    Final cut · export ready
+                  </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              <div className="hero-anim">
-                {/* file lives in: public/imgs/video-editing-animation.svg */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/imgs/video-editing-animation.svg"
-                  alt="Video editing timeline animation"
-                  width={960}
-                  height={600}
-                />
-              </div>
-            </div>
-
+      <div className={`ve ${inter.className}`}>
+        <main id="top">
+          <div className="w" style={{ paddingBottom: 40 }}>
             <NowEditing />
           </div>
-        </section>
 
         <div className="tools" aria-hidden="true">
           <div>{strip.map((t, i) => (
@@ -209,7 +305,8 @@ export default function VideoEditingPage() {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }
