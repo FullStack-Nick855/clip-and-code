@@ -1,14 +1,63 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Inter } from "next/font/google";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+  type MotionValue,
+} from "framer-motion";
 import Link from "next/link";
 import { Clapperboard, TrendingUp, ShieldCheck } from "lucide-react";
 import "./video-editing.css";
-import NowEditing from "./NowEditing";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+// Card colour theme for the "What I can do" section: "gradient" or "dark"
+const CARD_THEME: "gradient" | "dark" = "gradient";
+
+/* ───────────── "NOW EDITING" loader ───────────── */
+const TOTAL_SECONDS = 17 * 60 + 36; // timeline length shown in the timecode (00:17:36:00)
+const LOOP_MS = 20000; // real time the bar takes to run from start to end
+const FPS = 24;
+
+function toTimecode(progress: number) {
+  const totalFrames = Math.floor(progress * TOTAL_SECONDS * FPS);
+  const ff = totalFrames % FPS;
+  const secs = Math.floor(totalFrames / FPS);
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${p(Math.floor(secs / 3600))}:${p(Math.floor((secs % 3600) / 60))}:${p(secs % 60)}:${p(ff)}`;
+}
+
+function NowEditing() {
+  const [progress, setProgress] = useState(0.67);
+  const raf = useRef<number>(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const start = performance.now();
+    const tick = (now: number) => {
+      setProgress(((now - start) % LOOP_MS) / LOOP_MS);
+      raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf.current);
+  }, []);
+
+  return (
+    <div className="now" aria-hidden="true">
+      <div className="now-bar">
+        <div className="now-fill" style={{ width: `${progress * 100}%` }} />
+      </div>
+      <div className="now-row">
+        <span>NOW EDITING</span>
+        <span className="now-time">{toTimecode(progress)}</span>
+      </div>
+    </div>
+  );
+}
 
 const tools = [
   "Premiere Pro", "After Effects", "DaVinci Resolve", "Color Grading",
@@ -37,6 +86,14 @@ const services = [
   { title: "Brand & Promo Edits", text: "Launch videos, product promos, event recaps and agency client edits that feel premium.", points: ["Color grading", "Motion graphics", "Revision-friendly workflow"] },
 ];
 
+const capabilities = [
+  { title: "Short Form Video", text: "We craft bite-sized, high-impact edits perfect for capturing attention on platforms like Instagram Reels, YouTube Shorts, and TikTok. Our expertise ensures your short-form content is engaging, dynamic, and packs a punch within seconds.", tilt: -3 },
+  { title: "Thumbnail Design", text: "Your thumbnail is your video's first impression. We create eye-catching, platform-specific thumbnails that entice viewers to click and watch. Our designs will accurately represent your content while grabbing attention in a crowded feed.", tilt: 2.5 },
+  { title: "SEO Optimization", text: "We go beyond the edit! We optimize your video titles, descriptions, and tags to increase discoverability in search results on YouTube and other platforms. This helps your ideal audience find your content more easily.", tilt: -2 },
+  { title: "Long-Form Video", text: "We transform your in-depth content into polished, captivating long-form videos. Whether it's a detailed tutorial, an insightful interview, or a captivating vlog, we turn your raw footage into a cohesive, engaging experience for viewers.", tilt: 3 },
+  { title: "Consulting", text: "Unsure where to start or need a fresh perspective? We offer personalized consultations to help you brainstorm video ideas, develop a content strategy, and optimize your approach for maximum impact on YouTube and Instagram.", tilt: -2.5 },
+];
+
 const steps = [
   { title: "Strategy", text: "We define the goal, platform, audience, references, deadline, and what the video should make viewers do." },
   { title: "Story", text: "I shape the strongest hook, select the useful footage, and build a clear viewing path before polishing." },
@@ -52,6 +109,86 @@ const reviews = [
   { text: "The difference between average content and great content is attention to detail. From storytelling to sound design, every part of the edit felt premium. The final result looked like something from a much larger production team.", name: "Rachel Morgan", role: "Brand Manager" },
   { text: "Great footage gets views. Great storytelling gets results. Mayank understands the difference.", name: "Michael Reed", role: "Creative Director" },
 ];
+
+function CapabilityCard({
+  item,
+  index,
+  total,
+  progress,
+}: {
+  item: (typeof capabilities)[number];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  // while the next card slides over it, this card shrinks, straightens and dims
+  const start = index / total;
+  const targetScale = 1 - (total - 1 - index) * 0.045;
+  const scale = useTransform(progress, [start, 1], [1, targetScale]);
+  const rotate = useTransform(progress, [start, 1], [item.tilt, item.tilt * 0.35]);
+  const shade = useTransform(progress, [start, 1], [1, 0.72]);
+  const filter = useMotionTemplate`brightness(${shade})`;
+
+  return (
+    <div className="cap-stick" style={{ top: 120 + index * 22, zIndex: index + 1 }}>
+      <motion.div
+        className="cap-card"
+        style={{ scale, rotate, filter }}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <span className="cap-num">0{index + 1}</span>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </motion.div>
+    </div>
+  );
+}
+
+function CapabilitiesSection() {
+  const listRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ["start start", "end end"],
+  });
+  return (
+    <section id="capabilities" className={`cap cap--${CARD_THEME}`}>
+      <div className="w cap-grid">
+        <div className="cap-left">
+          <h2>
+            What I can do <span className="g">for You</span>
+          </h2>
+          <p>
+            We imagine and build experiences, products and businesses that
+            disrupt the status quo, win hearts and realize the future. Explore
+            how we work.
+          </p>
+          <a
+            className="btn p"
+            href="https://calendly.com/clipandcode/30min?month=2026-10"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a Call Now →
+          </a>
+        </div>
+        <div className="cap-right" ref={listRef}>
+          {capabilities.map((c, i) => (
+            <CapabilityCard
+              key={c.title}
+              item={c}
+              index={i}
+              total={capabilities.length}
+              progress={scrollYProgress}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function VideoEditingPage() {
   const strip = [...tools, ...tools];
@@ -238,6 +375,8 @@ export default function VideoEditingPage() {
             </div>
           </div>
         </section>
+
+        <CapabilitiesSection />
 
         <section id="services">
           <div className="w">

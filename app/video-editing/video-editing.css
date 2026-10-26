@@ -3,26 +3,26 @@
 html:has(.ve){scroll-behavior:smooth}
 .ve{font-family:inherit;background:var(--bg);color:var(--tx);line-height:1.6;-webkit-font-smoothing:antialiased}
 .ve a{color:inherit;text-decoration:none}
-.ve .w{max-width:1228px;margin:0 auto;padding:52px 20px 20px 20px}
+.ve .w{max-width:1180px;margin:0 auto;padding:0 24px}
 .ve section{padding:96px 0}
 .ve h1,.ve h2,.ve h3{line-height:1.15;letter-spacing:-.02em}
-.ve h1{font-size:clamp(2.3rem,5.5vw,3.6rem);font-weight:800}
+.ve h1{font-size:clamp(2.3rem,5.5vw,4rem);font-weight:800}
 .ve h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:700;margin-bottom:14px}
 .ve h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
 .ve .g{background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .ve .lead{color:var(--mut);max-width:640px;font-size:1.05rem}
-.ve .btn{display:inline-block;padding:10px 24px;border-radius:100px;font-weight:600;font-size:.95rem;transition:.2s}
+.ve .btn{display:inline-block;padding:13px 24px;border-radius:10px;font-weight:600;font-size:.95rem;transition:.2s}
 .ve .p{background:linear-gradient(90deg,var(--a),#7C3AED);color:#fff;box-shadow:0 8px 24px rgba(99,102,241,.35)}
 .ve .p:hover{transform:translateY(-2px)}
-.ve .o{border:1px solid #413e3e; color:var(--tx)}
+.ve .o{border:1px solid var(--line);color:var(--tx)}
 .ve .o:hover{border-color:var(--a)}
 .ve header{position:sticky;top:0;z-index:20;background:rgba(11,15,25,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .ve nav{display:flex;align-items:center;justify-content:space-between;height:68px}
 .ve .logo{font-weight:800;font-size:1.2rem}
 .ve .links{display:flex;gap:28px;align-items:center;color:var(--mut);font-size:.92rem}
 .ve .links a:hover{color:#fff}
-.ve .hero{padding:110px 0 80px; }
-.ve .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--card);padding:6px 14px;border-radius:99px;font-size:12px;color:#ffffffb3;margin-bottom:22px}
+.ve .hero{padding:110px 0 80px;background:radial-gradient(800px 400px at 80% -10%,rgba(99,102,241,.22),transparent),radial-gradient(600px 300px at 0 20%,rgba(34,211,238,.1),transparent)}
+.ve .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--card);padding:6px 14px;border-radius:99px;font-size:.82rem;color:var(--mut);margin-bottom:22px}
 .ve .badge i{width:8px;height:8px;border-radius:50%;background:#22C55E}
 .ve .hero p{margin:22px 0 32px;color:var(--mut);font-size:1.12rem;max-width:620px}
 .ve .cta{display:flex;gap:14px;flex-wrap:wrap}
@@ -81,16 +81,86 @@ html:has(.ve){scroll-behavior:auto}
 .ve .tools .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--a2);vertical-align:middle;margin:0 4px}
 .ve .tools span{margin:0}
 .ve .tools .dot{margin:0 26px}
-.ve .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.ve .hero-anim{border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(99,102,241,.3)}
-.ve .hero-anim img{display:block;width:100%;height:auto}
+.ve .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.ve .hv{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--line);box-shadow:0 30px 80px rgba(99,102,241,.25)}
+.ve .hv video{width:100%;height:100%;object-fit:cover;display:block}
+.ve .hv-live{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:8px;padding:5px 12px;border-radius:99px;background:rgba(11,15,25,.7);backdrop-filter:blur(8px);font-size:.72rem;font-weight:600;letter-spacing:.12em}
+.ve .hv-live i{width:7px;height:7px;border-radius:50%;background:#EF4444}
+.ve .hv-sound{position:absolute;bottom:14px;right:14px;padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:rgba(11,15,25,.75);backdrop-filter:blur(8px);color:var(--tx);font:inherit;font-size:.8rem;cursor:pointer}
+.ve .hv-sound:hover{border-color:var(--a)}
+@media(max-width:960px){.ve .hero-grid{grid-template-columns:1fr;gap:40px}.ve .hv{max-width:420px;margin:0 auto;width:100%}}
+.ve .hero-anim{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+
+/* ===== Capabilities (parallax) ===== */
+.ve .cap{padding:110px 0 130px;overflow:hidden}
+.ve .cap-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.ve .cap-left{position:sticky;top:130px}
+.ve .cap-left h2{font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.08;margin-bottom:18px}
+.ve .cap-left p{color:var(--mut);max-width:30rem;font-size:1.02rem;margin-bottom:28px}
+.ve .cap-right{display:flex;flex-direction:column;gap:70px;padding:30px 0 60px}
+.ve .cap-card{
+  padding:36px 34px;border-radius:26px;color:#0B0F19;
+  background:linear-gradient(135deg,#A5B4FC 0%,#67E8F9 100%);
+  box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 60px rgba(99,102,241,.15);
+}
+.ve .cap-item{will-change:transform,opacity}
+.ve .cap-item:nth-child(even){margin-left:auto}
+.ve .cap-item{max-width:470px}
+.ve .cap-card h3{font-size:1.7rem;margin-bottom:14px;color:#0B0F19}
+.ve .cap-card p{font-size:.98rem;line-height:1.6;color:rgba(11,15,25,.82)}
 @media(max-width:960px){
-  .ve .hero-grid{grid-template-columns:1fr;gap:40px}
+  .ve .cap-grid{grid-template-columns:1fr;gap:40px}
+  .ve .cap-left{position:static}
+  .ve .cap-item,.ve .cap-item:nth-child(even){margin:0 auto;max-width:100%}
+  .ve .cap-right{gap:40px}
 }
-.ve .badge svg {
-    width: 13px;
-    color: #06b6d4;
+
+/* ===== Capabilities v2: sticky stacking cards ===== */
+.ve .cap{overflow:clip}                 /* clip (not hidden) so position:sticky keeps working */
+.ve .cap-right{display:block;padding:10px 0 0}
+.ve .cap-stick{position:sticky;margin-bottom:64px}
+.ve .cap-stick:last-child{margin-bottom:0}
+.ve .cap-stick .cap-card{width:100%;max-width:520px;margin-left:auto;min-height:260px;will-change:transform}
+.ve .cap-num{display:inline-block;margin-bottom:14px;padding:3px 12px;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.1em;background:rgba(11,15,25,.14);color:#0B0F19}
+@media(max-width:960px){
+  .ve .cap-stick .cap-card{margin:0 auto;max-width:100%}
 }
-.ve .trust-row{display:flex;flex-wrap:wrap;gap:32px;margin-top:44px;font-size:.9rem;color:var(--mut)}
-.ve .trust-row span{display:inline-flex;align-items:center;gap:10px}
-.ve .trust-row svg{width:17px;height:17px;flex-shrink:0;color:var(--a2)}
+
+/* ===== Capabilities cards theme 1: "dark" (e-commerce card look) ===== */
+.ve .cap--dark .cap-card{
+  position:relative;color:#fff;border-radius:22px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(420px 220px at 0% 0%,rgba(99,102,241,.22),transparent 70%),
+    radial-gradient(360px 200px at 100% 100%,rgba(34,211,238,.10),transparent 70%),
+    linear-gradient(160deg,rgba(21,27,50,.96),rgba(11,15,28,.96));
+  box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 50px rgba(99,102,241,.10);
+  backdrop-filter:blur(14px);
+}
+.ve .cap--dark .cap-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(135deg,rgba(99,130,255,.75),rgba(34,211,238,.25) 50%,rgba(124,92,255,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.ve .cap--dark .cap-card h3{color:#fff;font-size:1.55rem}
+.ve .cap--dark .cap-card p{color:rgba(255,255,255,.66);font-size:.97rem;line-height:1.65}
+.ve .cap--dark .cap-num{background:linear-gradient(90deg,#4F7CFF,#7C5CFF);color:#fff;box-shadow:0 6px 18px rgba(79,124,255,.35)}
+
+/* ===== Capabilities cards theme 2: "gradient" (same blue -> violet as the Book a Call button) ===== */
+.ve .cap--gradient .cap-card{
+  position:relative;color:#fff;border-radius:22px;
+  border:1px solid rgba(255,255,255,.2);
+  background:
+    radial-gradient(380px 200px at 0% 0%,rgba(255,255,255,.20),transparent 70%),
+    linear-gradient(135deg,#4F7CFF 0%,#7C5CFF 100%);
+  box-shadow:0 30px 70px rgba(0,0,0,.5),0 18px 50px rgba(79,124,255,.35);
+}
+.ve .cap--gradient .cap-stick:nth-child(even) .cap-card{
+  background:
+    radial-gradient(380px 200px at 0% 0%,rgba(255,255,255,.20),transparent 70%),
+    linear-gradient(135deg,#7C5CFF 0%,#4F7CFF 55%,#22B8E8 100%);
+}
+.ve .cap--gradient .cap-card h3{color:#fff;font-size:1.55rem}
+.ve .cap--gradient .cap-card p{color:rgba(255,255,255,.9);font-size:.97rem;line-height:1.65}
+.ve .cap--gradient .cap-num{background:rgba(255,255,255,.2);color:#fff}
